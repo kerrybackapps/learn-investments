@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Apr  5 16:40:58 2022
+
+@author: kerry
+"""
+
+import dash_bootstrap_components as dbc
+from dash import dcc, html, Output, Input, callback
+from pages.capm.alphas_mve_figtbl import figtbl
+from pages.formatting import Slider, Layout
+
+title = "Alphas and mean-variance efficiency"
+runtitle = None
+chapter = "Capital Asset Pricing Model"
+chapter_url = 'capm'
+urls = None
+
+text = """ 
+    Consider a regression of the excess return of an asset on the excess return of a benchmark:
+    $r - r_f = \\alpha +\\beta (r_b-r_f) + \\varepsilon$, where $r=$ asset return, $r_f=$ risk-free return, 
+    $r_b=$ benchmark return, and $\\varepsilon$ is a zero-mean risk that is uncorrelated with $r_b$. Adding some of the
+    asset to the benchmark (or increasing the weight of the asset if it is already in the benchmark) can improve the
+    mean-variance efficiency of the benchmark if and only if the alpha is positive.  Shorting some of the asset (or
+    reducing its weight if it is already in the benchmark) can improve mean-variance efficiency if and only if the
+    alpha is negative.  This can be seen from the figure.  The tangency portfolio of the benchmark and the asset equals
+    the benchmark if and only if the alpha is zero.  
+    """
+
+name = "alphas_mve"
+
+inputs = [name + "input" + str(i) for i in range(6)]
+slider1 = Slider(
+    "Risk free rate", mn=0, mx=5, step=0.1, value=2, tick=1, name=inputs[0], kind="pct"
+)
+slider2 = Slider(
+    "Expected benchmark return",
+    mn=5,
+    mx=15,
+    step=1,
+    value=10,
+    tick=5,
+    name=inputs[1],
+    kind="pct",
+)
+slider3 = Slider(
+    "Standard deviation of benchmark return",
+    mn=5,
+    mx=20,
+    step=1,
+    value=15,
+    tick=5,
+    name=inputs[2],
+    kind="pct",
+)
+slider4 = Slider(
+    "Standard deviation of asset return",
+    mn=5,
+    mx=40,
+    step=1,
+    value=30,
+    tick=5,
+    name=inputs[3],
+    kind="pct",
+)
+slider5 = Slider(
+    "Correlation of asset with benchmark",
+    mn=-90,
+    mx=90,
+    step=5,
+    value=60,
+    tick=30,
+    name=inputs[4],
+    kind="pct",
+)
+slider6 = Slider(
+    "Asset alpha", mn=-10, mx=10, step=0.5, value=5, tick=5, name=inputs[5], kind="pct"
+)
+
+graph = dcc.Graph(id=name + "fig")
+
+left = dbc.Col([slider1, slider2, slider3, slider4, slider5, slider6], md=4)
+right = dbc.Col(graph, md=8)
+body = dbc.Row([left, right], align="center")
+
+layout = Layout(
+    title=title,
+    runtitle=runtitle,
+    chapter=chapter,
+    chapter_url=chapter_url,
+    urls=urls,
+    text=text,
+    body=body,
+)
+lst = [Output(name + "fig", "figure")] + [Input(i, "value") for i in inputs]
+
+
+@callback(*lst)
+def call(*args):
+    return figtbl(*args)
