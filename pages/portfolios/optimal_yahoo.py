@@ -72,8 +72,7 @@ text = """
     """
 
 text1 = """
-    This page may time out if there is a 
-    delay in retrieving data from Yahoo.  If that happens, click here to try running again.
+    Run
     """
 
 text2 = dcc.Markdown(
