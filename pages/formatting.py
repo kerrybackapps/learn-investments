@@ -389,10 +389,13 @@ def Layout(title, runtitle, chapter, chapter_url, urls, text, body):
         [
             dbc.Container(
                 [dropdown] + popovers,
-                id="nav-dropdown"
+                id="nav-dropdown",
+                fluid=True,
+                className="px-0"
             ),
         ],
-        width={"size":1, "offset":2}
+        width={"size":1, "offset":2},
+        className="d-flex justify-content-end"
     )
 
     ##################################################
@@ -523,7 +526,7 @@ def Layout(title, runtitle, chapter, chapter_url, urls, text, body):
 
     cols = [home, arrows, dropdown]
 
-    toprow = dbc.Row(cols, align="center")
+    toprow = dbc.Row(cols, align="center", className="mx-0")
     toprow = dbc.Card(toprow, style={"background-color": "#F3E5CF"}) #"#F3E8CF"}) # gray400})
 
     ##########################################################
@@ -556,7 +559,7 @@ def Layout(title, runtitle, chapter, chapter_url, urls, text, body):
         fluid=True,
     )
 
-    nav = dbc.Row(dbc.Col(nav, width={"size": 8, "offset": 2}))
+    nav = dbc.Row(dbc.Col(nav, width={"size": 8, "offset": 2}), className="mx-0")
 
     top = html.Div(
         [
@@ -577,7 +580,7 @@ def Layout(title, runtitle, chapter, chapter_url, urls, text, body):
         style={"background-color": "#BCE1F5"} # "#33BEFF"}
     )
 
-    return dbc.Container([top, body], fluid=True)
+    return dbc.Container([top, body], fluid=True, className="px-0")
 
 def Overview(titles, texts):
     cards = []
