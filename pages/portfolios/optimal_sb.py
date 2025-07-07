@@ -114,6 +114,7 @@ Ports = DataTable(
     style_header=style_header,
     #style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 cols = ["", "S&P 500", "Gold", "Corporates", "Treasuries"]
@@ -124,6 +125,7 @@ Corr = DataTable(
     style_header=style_header,
     style_data=style_data,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 badge = html.H5(dbc.Badge("Results", className="ms-1"))
@@ -132,22 +134,22 @@ badge = dbc.Row(badge)
 
 # Layout
 
-cola = dbc.Col(html.Div("Allow short sales"), width=dict(size=3, offset=4))
-colb = dbc.Col(radio, md=1)
-radio = dbc.Row([cola, colb], align="end")
+cola = dbc.Col(html.Div("Allow short sales"), xs=12, sm=6, md=3, lg=3, className="mb-2")
+colb = dbc.Col(radio, xs=12, sm=6, md=1, lg=1, className="mb-2")
+radio = dbc.Row([cola, colb], align="end", className="gx-1")
 
-left = dbc.Col(slider, md=4)
-middle = dbc.Col(slider1, md=4)
-right = dbc.Col(slider2, md=4)
-row1 = dbc.Row([left, middle, right], align="center")
+left = dbc.Col(slider, xs=12, sm=12, md=4, lg=4, className="mb-2")
+middle = dbc.Col(slider1, xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(slider2, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, middle, right], align="center", className="gx-1")
 
 label1 = dbc.Label("Correlation Matrix")
 label2 = dbc.Label("Optimal Portfolios")
-left = dbc.Col([label1, Corr, html.Br(), label2, Ports], md=6)
-right = dbc.Col(graph, md=6)
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col([label1, Corr, html.Br(), label2, Ports], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Hr(), radio, html.Hr(), html.Br(), row2])
+body = dbc.Container([row1, html.Hr(), radio, html.Hr(), html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

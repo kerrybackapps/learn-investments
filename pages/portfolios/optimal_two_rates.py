@@ -189,32 +189,32 @@ fig2 = dcc.Graph(id=name + "fig2")
 
 ########## PAGE LAYOUT
 # Top row - inputs
-left   = dbc.Col([slider1, slider2, slider3, slider10], md=4)
-middle = dbc.Col([slider4, slider5, slider6, slider11], md=4)
-right  = dbc.Col([slider7, slider8, slider9, slider12], md=4)
-row1 = dbc.Row([left, middle, right], align="center")
+left   = dbc.Col([slider1, slider2, slider3, slider10], xs=12, sm=12, md=4, lg=4, className="mb-2")
+middle = dbc.Col([slider4, slider5, slider6, slider11], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right  = dbc.Col([slider7, slider8, slider9, slider12], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, middle, right], align="center", className="gx-1")
 
 col1 = dbc.Col(
     html.Div('Correlations are physically possible and assets are not linearly related?'),
-    width={'size': 7, 'offset': 2}
+    xs=12, sm=12, md=7, lg=7, className="mb-2"
 )
 col2 = dbc.Col(
     html.Div(id=name+'PDCov', style=text_style),
-    width={'size': 1}
+    xs=12, sm=6, md=1, lg=1, className="mb-2"
 )
-row2 = dbc.Row([col1, col2])
+row2 = dbc.Row([col1, col2], className="gx-1")
 
 label = html.Div("Optimal allocation to risky assets:")
-label = dbc.Col(label, width=dict(size=4, offset=3))
+label = dbc.Col(label, xs=12, sm=12, md=4, lg=4, className="mb-2")
 alloc = html.Div(id=name + "alloc", style=text_style)
-alloc = dbc.Col(alloc, width=dict(size=5))
-alloc = dbc.Row([label, alloc])
+alloc = dbc.Col(alloc, xs=12, sm=12, md=5, lg=5, className="mb-2")
+alloc = dbc.Row([label, alloc], className="gx-1")
 
-fig1 = dbc.Col([alloc, fig1], md=8)
-fig2 = dbc.Col(fig2, md=4)
-row3 = dbc.Row([fig1, fig2], align="top")
+fig1 = dbc.Col([alloc, fig1], xs=12, sm=12, md=8, lg=8, className="mb-2")
+fig2 = dbc.Col(fig2, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row3 = dbc.Row([fig1, fig2], align="top", className="gx-1")
 # Combine rows
-body = html.Div([row1, html.Hr(), row2, html.Hr(), row3])
+body = dbc.Container([row1, html.Hr(), row2, html.Hr(), row3], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

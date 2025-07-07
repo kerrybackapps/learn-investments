@@ -159,34 +159,34 @@ graph = dcc.Graph(id=name + "fig")
 
 ########## PAGE LAYOUT
 # Top row - inputs
-left   = dbc.Col([slider1, slider2, slider3], md=4)
-middle = dbc.Col([slider4, slider5, slider6], md=4)
-right  = dbc.Col([slider7, slider8, slider9], md=4)
-row1 = dbc.Row([left, middle, right], align="center")
+left   = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=4, lg=4, className="mb-2")
+middle = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right  = dbc.Col([slider7, slider8, slider9], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, middle, right], align="center", className="gx-1")
 
-left = dbc.Col(slider10, width=dict(size=4, offset=2))
-right = dbc.Col(slider11, width=dict(size=4))
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col(slider10, xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(slider11, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
 col1 = dbc.Col(
     html.Div('Correlations are physically possible and assets are not linearly related?'),
-    width={'size': 7, 'offset': 2}
+    xs=12, sm=12, md=7, lg=7, className="mb-2"
 )
 col2 = dbc.Col(
     html.Div(id=name+'PDCov', style=text_style),
-    width={'size': 1}
+    xs=12, sm=6, md=1, lg=1, className="mb-2"
 )
-row3 = dbc.Row([col1, col2])
+row3 = dbc.Row([col1, col2], className="gx-1")
 
 label = html.Div("Optimal allocation to risky assets:")
-label = dbc.Col(label, width=dict(size=4, offset=3))
+label = dbc.Col(label, xs=12, sm=12, md=4, lg=4, className="mb-2")
 alloc = html.Div(id=name + "alloc", style=text_style)
-alloc = dbc.Col(alloc, width=dict(size=2))
+alloc = dbc.Col(alloc, xs=12, sm=6, md=2, lg=2, className="mb-2")
 
-row4 = dbc.Row([label, alloc], align="center")
+row4 = dbc.Row([label, alloc], align="center", className="gx-1")
 
 # Combine rows
-body = html.Div([row1, row2, html.Hr(), row3, html.Hr(), row4, html.Br(), graph])
+body = dbc.Container([row1, row2, html.Hr(), row3, html.Hr(), row4, html.Br(), graph], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

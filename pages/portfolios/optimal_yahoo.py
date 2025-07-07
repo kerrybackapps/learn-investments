@@ -129,6 +129,7 @@ Tickers = DataTable(
     columns=[{"name": "Tickers", "id": name+"t", "editable": True}],
     css = css_no_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
     data=[{name+"t": "spy"}, {name+"t": "gld"}, {name+"t": "lqd"}, {name+"t": "ief"}, ]
 )
 Tickers = dcc.Loading(Tickers, type="circle")
@@ -160,6 +161,7 @@ Ports = DataTable(
     style_header=style_header,
     #style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 Ports = dcc.Loading(id=name + "loading2", children=[Ports], type="circle")
 
@@ -167,21 +169,22 @@ Corr = DataTable(
     id=name + "corr",
     style_header=style_header,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 Corr = dcc.Loading(id=name + "loading3", children=[Corr], type="circle")
 
 mindate_label = html.Div("Actual date range:")
 mindate = dcc.Loading(html.Div(id=name+"mindate", style=text_style), type="circle")
-mindate_label = dbc.Col(mindate_label, md=6)
-mindate = dbc.Col(mindate, md=6)
-daterow = dbc.Row([mindate_label, mindate])
+mindate_label = dbc.Col(mindate_label, xs=12, sm=12, md=6, lg=6, className="mb-2")
+mindate = dbc.Col(mindate, xs=12, sm=12, md=6, lg=6, className="mb-2")
+daterow = dbc.Row([mindate_label, mindate], className="gx-1")
 
-cola = dbc.Col(html.Div("Allow short sales"), md=6)
-colb = dbc.Col(Radio, md=6)
-Radio = dbc.Row([cola, colb], align="end")
-middle = dbc.Col([slider1, slider2, html.Br(), Radio], md=4)
+cola = dbc.Col(html.Div("Allow short sales"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+colb = dbc.Col(Radio, xs=12, sm=12, md=6, lg=6, className="mb-2")
+Radio = dbc.Row([cola, colb], align="end", className="gx-1")
+middle = dbc.Col([slider1, slider2, html.Br(), Radio], xs=12, sm=12, md=4, lg=4, className="mb-2")
 
-right = dbc.Col([slider0, html.Br(), daterow, html.Br(), html.Br(), Btn], md=4)
+right = dbc.Col([slider0, html.Br(), daterow, html.Br(), html.Br(), Btn], xs=12, sm=12, md=4, lg=4, className="mb-2")
 
 
 left = dbc.Col(
@@ -192,25 +195,25 @@ left = dbc.Col(
     dbc.Label("Enter Tickers"),
     Tickers
     ],
-    md=4
+    xs=12, sm=12, md=4, lg=4, className="mb-2"
 )
 
 
-row = dbc.Row([left, middle, right], align="top")
+row = dbc.Row([left, middle, right], align="top", className="gx-1")
 
-left = dbc.Col([dbc.Label("Optimal Portfolios"), Ports], md=6)
-right = dbc.Col(graph, md=6)
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col([dbc.Label("Optimal Portfolios"), Ports], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
 Corr = dbc.Row(dbc.Col([dbc.Label("Correlation Matrix"), Corr]))
 
-body = html.Div([
+body = dbc.Container([
     row,
     html.Hr(),
     row2,
     Corr,
     ticker_interval # Add interval to the layout
-])
+], fluid=True, className="px-1")
 layout = Layout(
     title=title,
     runtitle=runtitle,

@@ -89,6 +89,7 @@ Assets = DataTable(
     columns=[{"name": "", "id": name+"l",}],
     style_header=style_header,
     style_data=style_header,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
     data=[{name + "l": "Asset "+str(i+1)} for i in range(3)]
 )
 
@@ -98,6 +99,7 @@ Means = DataTable(
     data=[{name+"m": 10+2*i} for i in range(3)],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 Stdevs = DataTable(
@@ -106,6 +108,7 @@ Stdevs = DataTable(
     data = [{name + "s": 15+5*i} for i in range(3)],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 Corrs = DataTable(
@@ -114,6 +117,7 @@ Corrs = DataTable(
     data = [{name+"asset"+str(j): 100 if j==i else 0 for j in range(3)} for i in range(3)],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 cols = ["Risk Aver", "10", "8", "6", "4", "2"]
@@ -124,15 +128,16 @@ tbl = DataTable(
     style_data=style_data,
     style_header=style_header,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 graph = dcc.Graph(id=name + "fig")
 
-slider1 = dbc.Col(slider1, md=4)
-slider2 = dbc.Col(slider2, md=4)
-col1 = dbc.Col(html.Div("Allow short sales"), md=2)
-col2 = dbc.Col(Radio, md=2)
-row1 = dbc.Row([slider1, slider2, col1, col2], align="center")
+slider1 = dbc.Col(slider1, xs=12, sm=12, md=4, lg=4, className="mb-2")
+slider2 = dbc.Col(slider2, xs=12, sm=12, md=4, lg=4, className="mb-2")
+col1 = dbc.Col(html.Div("Allow short sales"), xs=12, sm=6, md=2, lg=2, className="mb-2")
+col2 = dbc.Col(Radio, xs=12, sm=6, md=2, lg=2, className="mb-2")
+row1 = dbc.Row([slider1, slider2, col1, col2], align="center", className="gx-1")
 
 """
 badge = html.H5(dbc.Badge("Asset Data", className="ms-1"))
@@ -146,31 +151,31 @@ badge2 = dbc.Row(badge)
 
 
 
-num = dbc.Row(dbc.Col([dbc.Label("Number of assets"), Num], md=2))
+num = dbc.Row(dbc.Col([dbc.Label("Number of assets"), Num], xs=12, sm=6, md=2, lg=2, className="mb-2"), className="gx-1")
 
-col0 = dbc.Col(Assets, md=1)
-col1 = dbc.Col(Means, md=1)
-col2 = dbc.Col(Stdevs, md=1)
-col3 = dbc.Col([html.Label("Enter correlations in percent"), Corrs], md=9)
-data = dbc.Row([col0, col1, col2, col3], align="end")
+col0 = dbc.Col(Assets, xs=12, sm=6, md=1, lg=1, className="mb-2")
+col1 = dbc.Col(Means, xs=12, sm=6, md=1, lg=1, className="mb-2")
+col2 = dbc.Col(Stdevs, xs=12, sm=6, md=1, lg=1, className="mb-2")
+col3 = dbc.Col([html.Label("Enter correlations in percent"), Corrs], xs=12, sm=12, md=9, lg=9, className="mb-2")
+data = dbc.Row([col0, col1, col2, col3], align="end", className="gx-1")
 
 col1 = dbc.Col(
     html.Div('Correlations are physically possible and assets are not linearly related?'),
-    width={'size': 6, 'offset': 2}
+    xs=12, sm=12, md=6, lg=6, className="mb-2"
 )
 col2 = dbc.Col(
     html.Div(id=name+'PDCov', style=text_style),
-    width={'size': 1}
+    xs=12, sm=6, md=1, lg=1, className="mb-2"
 )
-pdrow = dbc.Row([col1, col2])
+pdrow = dbc.Row([col1, col2], className="gx-1")
 
-tbl = dbc.Col([dbc.Label("Optimal Portfolios"), tbl], md=5)
-graph = dbc.Col(graph, md=7)
-row3 = dbc.Row([tbl, graph], align="top")
+tbl = dbc.Col([dbc.Label("Optimal Portfolios"), tbl], xs=12, sm=12, md=5, lg=5, className="mb-2")
+graph = dbc.Col(graph, xs=12, sm=12, md=7, lg=7, className="mb-2")
+row3 = dbc.Row([tbl, graph], align="top", className="gx-1")
 
-body = html.Div([num, data, html.Br(), pdrow, html.Hr(),
+body = dbc.Container([num, data, html.Br(), pdrow, html.Hr(),
                  row1, html.Br(), row3
-                 ])
+                 ], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
