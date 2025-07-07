@@ -80,6 +80,7 @@ tbl1 = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 tbl2 = DataTable(
     id=name + "tbl2",
@@ -87,6 +88,7 @@ tbl2 = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 out1 = html.Div(id=name + "out1", style=text_style)
@@ -96,18 +98,18 @@ label2 = dbc.Label("Put implied volatility", html_for=name + "out2")
 
 graph = dcc.Graph(id=name + "fig")
 
-left = dbc.Col([slider1, slider4], md=4)
-middle = dbc.Col([slider5, slider3], md=4)
-right = dbc.Col(slider6, md=4)
-row1 = dbc.Row([left, middle, right], align="top")
+left = dbc.Col([slider1, slider4], xs=12, sm=6, md=4, lg=4, className="mb-2")
+middle = dbc.Col([slider5, slider3], xs=12, sm=6, md=4, lg=4, className="mb-2")
+right = dbc.Col(slider6, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, middle, right], align="top", className="gx-1")
 
-left = dbc.Col([slider2, html.Br(), label1, out1, html.Br(), tbl1], md=3)
-right = dbc.Col([slider7, html.Br(), label2, out2, html.Br(), tbl2], md=3)
+left = dbc.Col([slider2, html.Br(), label1, out1, html.Br(), tbl1], xs=12, sm=6, md=3, lg=3, className="mb-2")
+right = dbc.Col([slider7, html.Br(), label2, out2, html.Br(), tbl2], xs=12, sm=6, md=3, lg=3, className="mb-2")
 
-graph = dbc.Col(graph, md=6)
-row2 = dbc.Row([left, right, graph], align="end")
+graph = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right, graph], align="end", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -55,26 +55,26 @@ graph3 = dcc.Graph(id=name + "fig3")
 graph4 = dcc.Graph(id=name + "fig4")
 graph5 = dcc.Graph(id=name + "fig5")
 
-col1 = dbc.Col(slider1, md=4)
-col2 = dbc.Col(slider5, md=4)
-row1 = dbc.Row([col1, col2, dbc.Col(md=4)])
+col1 = dbc.Col(slider1, xs=12, sm=6, md=4, lg=4, className="mb-2")
+col2 = dbc.Col(slider5, xs=12, sm=6, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([col1, col2, dbc.Col(xs=0, sm=0, md=4, lg=4)], className="gx-1")
 
-col1 = dbc.Col(slider2, md=4)
-col2 = dbc.Col(slider4, md=4)
-col3 = dbc.Col(slider3, md=4)
-row2 = dbc.Row([col1, col2, col3])
+col1 = dbc.Col(slider2, xs=12, sm=6, md=4, lg=4, className="mb-2")
+col2 = dbc.Col(slider4, xs=12, sm=6, md=4, lg=4, className="mb-2")
+col3 = dbc.Col(slider3, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row2 = dbc.Row([col1, col2, col3], className="gx-1")
 
-blank = dbc.Col(md=2)
-col1 = dbc.Col(graph1, md=4)  # delta
-col2 = dbc.Col(graph4, md=4)  # vega
-row3 = dbc.Row([blank, col1, col2, blank], align="center")
+blank = dbc.Col(xs=0, sm=0, md=2, lg=2)
+col1 = dbc.Col(graph1, xs=12, sm=6, md=4, lg=4, className="mb-2")  # delta
+col2 = dbc.Col(graph4, xs=12, sm=6, md=4, lg=4, className="mb-2")  # vega
+row3 = dbc.Row([blank, col1, col2, blank], align="center", className="gx-1")
 
-col1 = dbc.Col(graph2, md=4)  # gamma
-col2 = dbc.Col(graph3, md=4)  # theta
-col3 = dbc.Col(graph5, md=4)  # rho
-row4 = dbc.Row([col1, col2, col3], align="center")
+col1 = dbc.Col(graph2, xs=12, sm=6, md=4, lg=4, className="mb-2")  # gamma
+col2 = dbc.Col(graph3, xs=12, sm=6, md=4, lg=4, className="mb-2")  # theta
+col3 = dbc.Col(graph5, xs=12, sm=12, md=4, lg=4, className="mb-2")  # rho
+row4 = dbc.Row([col1, col2, col3], align="center", className="gx-1")
 
-body = html.Div([row1, row2, html.Br(), row3, html.Br(), row4])
+body = dbc.Container([row1, row2, html.Br(), row3, html.Br(), row4], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
