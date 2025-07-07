@@ -70,8 +70,8 @@ ticker_interval = dcc.Interval(
 )
 
 # Adjusted layout columns
-inpt_col = dbc.Col(inpt, md=5) # Adjusted width
-slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], md=7) # Adjusted width
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=5, lg=5, className="mb-2")
+slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], xs=12, sm=12, md=7, lg=7, className="mb-2")
 
 
 columns = [
@@ -84,16 +84,17 @@ tbl = DataTable(
     style_header = style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
-tbl_col = dbc.Col(dcc.Loading(tbl, type="circle"), md=4) # Renamed for clarity
+tbl_col = dbc.Col(dcc.Loading(tbl, type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
 
-fig1_col = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig1"), type="circle"), md=4) # Renamed
-fig2_col = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig2"), type="circle"), md=4) # Renamed
+fig1_col = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig1"), type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+fig2_col = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig2"), type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
 
-row1 = dbc.Row([slider_col, inpt_col], align="center") # Updated row1 layout
-row2 = dbc.Row([tbl_col, fig1_col, fig2_col], align="center") # Updated row2 layout
+row1 = dbc.Row([slider_col, inpt_col], align="center", className="gx-1")
+row2 = dbc.Row([tbl_col, fig1_col, fig2_col], align="center", className="gx-1")
 
-body = html.Div([row1, html.Hr(), row2, ticker_interval]) # Added ticker_interval
+body = dbc.Container([row1, html.Hr(), row2, ticker_interval], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

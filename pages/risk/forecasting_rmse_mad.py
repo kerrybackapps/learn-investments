@@ -115,7 +115,8 @@ tbl1 = DataTable(
             'if': {'column_id': name},
             'textAlign': 'left'
         }
-    ]
+    ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 tbl2 = DataTable(
     id=name + "tbl2",
@@ -131,7 +132,8 @@ tbl2 = DataTable(
             'if': {'column_id': name},
             'textAlign': 'left'
         }
-    ]
+    ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 tbl3 = DataTable(
     id=name + "tbl3",
@@ -147,7 +149,8 @@ tbl3 = DataTable(
             'if': {'column_id': name},
             'textAlign': 'left'
         }
-    ]
+    ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 
@@ -166,28 +169,28 @@ btn = dbc.Button(
 # btn = dbc.Row(btn)
 
 # Top row - inputs
-left0  = dbc.Col(btn, md=4)
-right0 = dbc.Col([slider1, slider2,slider3], md=8)
-row0 = dbc.Row([left0, right0], align='center')
+left0  = dbc.Col(btn, xs=12, sm=12, md=4, lg=4, className="mb-2")
+right0 = dbc.Col([slider1, slider2,slider3], xs=12, sm=12, md=8, lg=8, className="mb-2")
+row0 = dbc.Row([left0, right0], align='center', className="gx-1")
 
 # 2nd row - cumulative return forecasting
-left1  = dbc.Col(tbl1, md=6)  #replace with table later
-right1 = dbc.Col(graph1, md=6)
-row1 = dbc.Row([left1,right1],align='center')
+left1  = dbc.Col(tbl1, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right1 = dbc.Col(graph1, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([left1,right1],align='center', className="gx-1")
 
 # 3nd row - arithmetic average return forecasting
-left2  = dbc.Col(tbl2, md=6)
-right2 = dbc.Col(graph2, md=6)
-row2 = dbc.Row([left2,right2],align='center')
+left2  = dbc.Col(tbl2, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right2 = dbc.Col(graph2, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left2,right2],align='center', className="gx-1")
 
 # 4th row - arithmetic average return forecasting
-left3  = dbc.Col(tbl3, md=6)
-right3 = dbc.Col(graph3, md=6)
-row3 = dbc.Row([left3,right3],align='center')
+left3  = dbc.Col(tbl3, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right3 = dbc.Col(graph3, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row3 = dbc.Row([left3,right3],align='center', className="gx-1")
 
 # Combine rows
 # body = html.Div([btn, row0, html.Hr(), html.Br(), text1, row1, html.Br(), text2, row2, html.Br(), text3, row3])
-body = html.Div([row0, html.Hr(), html.Br(), text1, row1, html.Br(), text2, row2, html.Br(), text3, row3])
+body = dbc.Container([row0, html.Hr(), html.Br(), text1, row1, html.Br(), text2, row2, html.Br(), text3, row3], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

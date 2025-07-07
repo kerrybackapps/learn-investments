@@ -57,17 +57,17 @@ graph_worst = dcc.Loading(
 )
 graph_box = dcc.Loading(dcc.Graph(id=name + "fig4"), type="circle")
 
-graph_all = dbc.Col(graph_all, md=4)
-graph_best = dbc.Col(graph_best, md=3)
-graph_worst = dbc.Col(graph_worst, md=3)
-graph_box = dbc.Col(graph_box, md=2)
+graph_all = dbc.Col(graph_all, xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_best = dbc.Col(graph_best, xs=12, sm=6, md=3, lg=3, className="mb-2")
+graph_worst = dbc.Col(graph_worst, xs=12, sm=6, md=3, lg=3, className="mb-2")
+graph_box = dbc.Col(graph_box, xs=12, sm=6, md=2, lg=2, className="mb-2")
 
-drop_col = dbc.Col([dbc.Label("Number of years", html_for=name + "drop"), drop], md=6)
-inpt_col = dbc.Col(inpt, md=6)
+drop_col = dbc.Col([dbc.Label("Number of years", html_for=name + "drop"), drop], xs=12, sm=12, md=6, lg=6, className="mb-2")
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-row1 = dbc.Row([drop_col, inpt_col], align="center")
-row2 = dbc.Row([graph_best, graph_worst, graph_all, graph_box], align="center")
-body = html.Div([row1, html.Hr(), row2, ticker_interval])
+row1 = dbc.Row([drop_col, inpt_col], align="center", className="gx-1")
+row2 = dbc.Row([graph_best, graph_worst, graph_all, graph_box], align="center", className="gx-1")
+body = dbc.Container([row1, html.Hr(), row2, ticker_interval], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

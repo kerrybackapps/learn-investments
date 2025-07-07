@@ -101,7 +101,8 @@ tbl1 = DataTable(
             'if': {'column_id': name},
             'textAlign': 'left'
         }
-    ]
+    ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 tbl2 = DataTable(
@@ -118,26 +119,27 @@ tbl2 = DataTable(
             'if': {'column_id': name+"2"},
             'textAlign': 'left'
         }
-    ]
+    ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
-col1 = dbc.Col(slider1, md=3)
-col2 = dbc.Col(slider2, md=3)
-col3 = dbc.Col(slider3, md=3)
+col1 = dbc.Col(slider1, xs=12, sm=6, md=3, lg=3, className="mb-2")
+col2 = dbc.Col(slider2, xs=12, sm=6, md=3, lg=3, className="mb-2")
+col3 = dbc.Col(slider3, xs=12, sm=6, md=3, lg=3, className="mb-2")
 
 btn = dbc.Row(
     dbc.Col(btn, width={"size": 8, "offset": 4})
 )
-col4 = dbc.Col(btn, md=3)
-row1 = dbc.Row([col1, col2, col3, col4], align="top")
+col4 = dbc.Col(btn, xs=12, sm=6, md=3, lg=3, className="mb-2")
+row1 = dbc.Row([col1, col2, col3, col4], align="top", className="gx-1")
 
-a = dbc.Col([dbc.Label('Error for Compound Return'), tbl1], md=3)
-b = dbc.Col(dcc.Graph(id=name+"fig1"), md=3)
-c = dbc.Col([dbc.Label('Error for Average Return'), tbl2], md=3)
-d = dbc.Col(dcc.Graph(id=name+"fig2"), md=3)
-row2 = dbc.Row([a, b, c, d], align="top")
+a = dbc.Col([dbc.Label('Error for Compound Return'), tbl1], xs=12, sm=6, md=3, lg=3, className="mb-2")
+b = dbc.Col(dcc.Graph(id=name+"fig1"), xs=12, sm=6, md=3, lg=3, className="mb-2")
+c = dbc.Col([dbc.Label('Error for Average Return'), tbl2], xs=12, sm=6, md=3, lg=3, className="mb-2")
+d = dbc.Col(dcc.Graph(id=name+"fig2"), xs=12, sm=6, md=3, lg=3, className="mb-2")
+row2 = dbc.Row([a, b, c, d], align="top", className="gx-1")
 
-body = html.Div([row1, html.Hr(), row2])
+body = dbc.Container([row1, html.Hr(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

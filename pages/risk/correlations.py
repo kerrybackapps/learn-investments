@@ -37,7 +37,7 @@ slider = dcc.RangeSlider(
 )
 slider = dbc.Col(
     [dbc.Label("Select date range"), slider],
-    width={"size": 6, "offset": 3},
+    xs=12, sm=12, md=6, lg=6, offset=3, className="mb-2"
 )
 slider = dbc.Row(slider)
 
@@ -50,17 +50,18 @@ tbl = DataTable(
     css=css_no_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 figs = [dcc.Graph(id=name+'fig'+str(i)) for i in range(1,6)]
-cols = [dbc.Col(fig, md=5) for fig in figs[:2]] + [dbc.Col(fig, md=4) for fig in figs[2:]]
+cols = [dbc.Col(fig, xs=12, sm=12, md=5, lg=5, className="mb-2") for fig in figs[:2]] + [dbc.Col(fig, xs=12, sm=12, md=4, lg=4, className="mb-2") for fig in figs[2:]]
 
-tbl = dbc.Col([dbc.Label('Correlation with inflation'), tbl], md=2)
+tbl = dbc.Col([dbc.Label('Correlation with inflation'), tbl], xs=12, sm=6, md=2, lg=2, className="mb-2")
 
-row1 = dbc.Row([tbl] + cols[:2], align='top')
-row2 = dbc.Row(cols[2:], align='top')
+row1 = dbc.Row([tbl] + cols[:2], align='top', className="gx-1")
+row2 = dbc.Row(cols[2:], align='top', className="gx-1")
 
-body = html.Div([slider, html.Br(), html.Hr(), row1, html.Br(), row2])
+body = dbc.Container([slider, html.Br(), html.Hr(), row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

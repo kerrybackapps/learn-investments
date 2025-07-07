@@ -59,8 +59,8 @@ ticker_interval = dcc.Interval(
     max_intervals=1 
 )
 
-inpt_col = dbc.Col(inpt, md=5) 
-slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], md=7)
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=5, lg=5, className="mb-2") 
+slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], xs=12, sm=12, md=7, lg=7, className="mb-2")
 
 graph_std = dcc.Loading(
     id=name + "loading1", children=[dcc.Graph(id=name + "fig1")], type="circle"
@@ -78,11 +78,11 @@ graph_rets = dcc.Loading(
     id=name + "loading5", children=[dcc.Graph(id=name + "fig5")], type="circle"
 )
 
-graph_std = dbc.Col(graph_std, md=4)
-graph_log = dbc.Col(graph_log, md=4)
-graph_box = dbc.Col(graph_box, md=3)
-graph_hist = dbc.Col(graph_hist, md=4)
-graph_rets = dbc.Col(graph_rets, md=6)
+graph_std = dbc.Col(graph_std, xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_log = dbc.Col(graph_log, xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_box = dbc.Col(graph_box, xs=12, sm=6, md=3, lg=3, className="mb-2")
+graph_hist = dbc.Col(graph_hist, xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_rets = dbc.Col(graph_rets, xs=12, sm=12, md=6, lg=6, className="mb-2")
 
 columns = [
     dict(name=c, id=name + c, type="numeric", format=percentage)
@@ -95,14 +95,15 @@ tbl = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 tbl = dcc.Loading(id=name + "loading6", children=[tbl], type="circle")
-tbl = dbc.Col(tbl, md=3)
+tbl = dbc.Col(tbl, xs=12, sm=6, md=3, lg=3, className="mb-2")
 
-row1 = dbc.Row([slider_col, inpt_col], align="center") 
-row2 = dbc.Row([tbl, graph_rets, graph_box], align="center")
-row3 = dbc.Row([graph_hist, graph_std, graph_log], align="center")
-body = html.Div([row1, html.Hr(), row2, row3, ticker_interval]) 
+row1 = dbc.Row([slider_col, inpt_col], align="center", className="gx-1") 
+row2 = dbc.Row([tbl, graph_rets, graph_box], align="center", className="gx-1")
+row3 = dbc.Row([graph_hist, graph_std, graph_log], align="center", className="gx-1")
+body = dbc.Container([row1, html.Hr(), row2, row3, ticker_interval], fluid=True, className="px-1") 
 
 layout = Layout(
     title=title,

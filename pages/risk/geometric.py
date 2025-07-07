@@ -70,8 +70,8 @@ ticker_interval = dcc.Interval(
     max_intervals=1
 )
 
-inpt_col = dbc.Col(inpt, md=6)
-slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], md=6)
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=6, lg=6, className="mb-2")
+slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], xs=12, sm=12, md=6, lg=6, className="mb-2")
 
 label0 = html.Div("Standard deviation")
 label1 = html.Div("Arithmetic average")
@@ -80,22 +80,22 @@ string0 = html.Div(id=name+"string0", style=text_style)
 string1 = html.Div(id=name+"string1", style=text_style)
 string2 = html.Div(id=name+"string2", style=text_style)
 
-stats_col1 = dbc.Col([label2, label1, label0], md=8)
-stats_col2 = dbc.Col([string2, string1, string0], md=4)
-stats_display_row = dbc.Row([stats_col1, stats_col2])
-stats_display_col = dbc.Col(stats_display_row, width=dict(size=3, offset=1))
+stats_col1 = dbc.Col([label2, label1, label0], xs=12, sm=12, md=8, lg=8, className="mb-2")
+stats_col2 = dbc.Col([string2, string1, string0], xs=12, sm=12, md=4, lg=4, className="mb-2")
+stats_display_row = dbc.Row([stats_col1, stats_col2], className="gx-1")
+stats_display_col = dbc.Col(stats_display_row, xs=12, sm=12, md=3, lg=3, offset=1, className="mb-2")
 
-input_slider_row = dbc.Row([slider_col, inpt_col], align="center")
-input_area_col = dbc.Col(input_slider_row, md=8)
+input_slider_row = dbc.Row([slider_col, inpt_col], align="center", className="gx-1")
+input_area_col = dbc.Col(input_slider_row, xs=12, sm=12, md=8, lg=8, className="mb-2")
 
-row1 = dbc.Row([input_area_col, stats_display_col], align="center")
+row1 = dbc.Row([input_area_col, stats_display_col], align="center", className="gx-1")
 
-graph_col_left = dbc.Col(dcc.Loading(dcc.Graph(id=name+"fig1"), type="circle"), md=6)
-graph_col_right = dbc.Col(dcc.Loading(dcc.Graph(id=name+"fig2"), type="circle"), md=6)
+graph_col_left = dbc.Col(dcc.Loading(dcc.Graph(id=name+"fig1"), type="circle"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+graph_col_right = dbc.Col(dcc.Loading(dcc.Graph(id=name+"fig2"), type="circle"), xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-row2 = dbc.Row([graph_col_left, graph_col_right], align="top")
+row2 = dbc.Row([graph_col_left, graph_col_right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2, ticker_interval])
+body = dbc.Container([row1, html.Br(), row2, ticker_interval], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

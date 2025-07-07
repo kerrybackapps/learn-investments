@@ -45,12 +45,12 @@ slider = dcc.RangeSlider(
 )
 slider = dbc.Col(
     [dbc.Label("Date Range", html_for=name + "slider"), slider],
-    width={"size": 6, "offset": 3},
+    xs=12, sm=12, md=6, lg=6, offset=3, className="mb-2"
 )
 
-graph_std = dbc.Col(dcc.Graph(id=name + "fig1"), md=4)
-graph_log = dbc.Col(dcc.Graph(id=name + "fig2"), md=4)
-graph_box = dbc.Col(dcc.Graph(id=name + "fig3"), md=4)
+graph_std = dbc.Col(dcc.Graph(id=name + "fig1"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_log = dbc.Col(dcc.Graph(id=name + "fig2"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+graph_box = dbc.Col(dcc.Graph(id=name + "fig3"), xs=12, sm=12, md=4, lg=4, className="mb-2")
 
 columns = ["", "S&P 500", "Gold", "Corporates", "Treasuries", "TBills"]
 columns = [
@@ -63,8 +63,9 @@ tbl = DataTable(
     style_header=style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
-tbl = dbc.Col([dbc.Label('Return Distributions'), tbl], md=6)
+tbl = dbc.Col([dbc.Label('Return Distributions'), tbl], xs=12, sm=12, md=6, lg=6, className="mb-2")
 
 cols = ["", "S&P 500", "Gold", "Corporates", "Treasuries"]
 columns = [dict(name=c, id=name + c) for c in cols]
@@ -73,13 +74,14 @@ Corr = DataTable(
     columns=columns,
     style_header=style_header,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
-Corr = dbc.Col([dbc.Label('Correlation Table'), Corr], md=6)
+Corr = dbc.Col([dbc.Label('Correlation Table'), Corr], xs=12, sm=12, md=6, lg=6, className="mb-2")
 
 row1 = dbc.Row([slider])
-row2 = dbc.Row([tbl, Corr], align="top")
-row3 = dbc.Row([graph_box, graph_std, graph_log], align="center")
-body = html.Div([row1, html.Br(), html.Hr(), row2, html.Br(), row3])
+row2 = dbc.Row([tbl, Corr], align="top", className="gx-1")
+row3 = dbc.Row([graph_box, graph_std, graph_log], align="center", className="gx-1")
+body = dbc.Container([row1, html.Br(), html.Hr(), row2, html.Br(), row3], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -70,8 +70,8 @@ ticker_interval = dcc.Interval(
 )
 
 # Adjusted layout columns
-inpt_col = dbc.Col(inpt, md=5) # Adjusted width
-slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], md=7) # Adjusted width
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=5, lg=5, className="mb-2")
+slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], xs=12, sm=12, md=7, lg=7, className="mb-2")
 
 columns = ["", "Daily", "Monthly", "Annual"]
 columns = [
@@ -83,20 +83,21 @@ tbl = DataTable(
     style_header=style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
-tbl = dbc.Col(dcc.Loading(tbl, type="circle"), md=6)
+tbl = dbc.Col(dcc.Loading(tbl, type="circle"), xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-fig = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig"), type="circle"),  md=6)
+fig = dbc.Col(dcc.Loading(dcc.Graph(id=name + "fig"), type="circle"), xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-row1 = dbc.Row([slider_col, inpt_col], align="center") # Updated row1 layout
-row2 = dbc.Row([tbl, fig], align="top")
+row1 = dbc.Row([slider_col, inpt_col], align="center", className="gx-1")
+row2 = dbc.Row([tbl, fig], align="top", className="gx-1")
 
-figd = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figd"), type="circle"),  md=4)
-figm = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figm"), type="circle"),  md=4)
-figa = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figa"), type="circle"),  md=4)
-row3 = dbc.Row([figd, figm, figa])
+figd = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figd"), type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+figm = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figm"), type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+figa = dbc.Col(dcc.Loading(dcc.Graph(id=name + "figa"), type="circle"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+row3 = dbc.Row([figd, figm, figa], className="gx-1")
 
-body = html.Div([row1, html.Hr(), html.Br(), row2, html.Br(), row3, ticker_interval]) # Added ticker_interval
+body = dbc.Container([row1, html.Hr(), html.Br(), row2, html.Br(), row3, ticker_interval], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

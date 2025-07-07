@@ -67,21 +67,21 @@ ticker_interval = dcc.Interval(
 )
 
 # Adjusted layout columns
-inpt_col = dbc.Col(inpt, md=5) # Adjusted width
-slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], md=7) # Adjusted width
+inpt_col = dbc.Col(inpt, xs=12, sm=12, md=5, lg=5, className="mb-2")
+slider_col = dbc.Col([dbc.Label("Date Range", html_for=name + "slider"), slider], xs=12, sm=12, md=7, lg=7, className="mb-2")
 
 fig1 = dcc.Loading(dcc.Graph(id=name + "fig1"), type="circle")
 fig2 = dcc.Loading(dcc.Graph(id=name + "fig2"), type="circle")
 fig3 = dcc.Loading(dcc.Graph(id=name + "fig3"), type="circle")
 fig4 = dcc.Loading(dcc.Graph(id=name + "fig4"), type="circle")
 
-left = dbc.Col([fig1, fig3], md=6)
-right = dbc.Col([fig2, fig4], md=6)
+left = dbc.Col([fig1, fig3], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([fig2, fig4], xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-row1 = dbc.Row([slider_col, inpt_col], align="center") # Updated row1 layout
-row2 = dbc.Row([left, right], align="top")
+row1 = dbc.Row([slider_col, inpt_col], align="center", className="gx-1")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2, ticker_interval]) # Added ticker_interval
+body = dbc.Container([row1, html.Br(), row2, ticker_interval], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

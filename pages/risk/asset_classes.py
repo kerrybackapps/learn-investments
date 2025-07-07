@@ -76,6 +76,7 @@ Tickers = DataTable(
     columns=[{"name": "Tickers", "id": name + "t", "editable": True}],
     css=css_no_header,
     style_data=style_data,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
     data=[
         {name + "t": "spy"},
         {name + "t": "iwm"},
@@ -120,15 +121,15 @@ left = dbc.Col(
         dbc.Label("Enter Tickers"),
         Tickers
     ],
-    width=dict(size=5, offset=1)
+    xs=12, sm=12, md=5, lg=5, offset=1, className="mb-2"
 )
 
 
 mindate_label = html.Div("Actual date range:")
 mindate = dcc.Loading(html.Div(id=name+"mindate", style=text_style), type="circle")
-mindate_label = dbc.Col(mindate_label, md=6)
-mindate = dbc.Col(mindate, md=6)
-daterow = dbc.Row([mindate_label, mindate])
+mindate_label = dbc.Col(mindate_label, xs=12, sm=6, md=6, lg=6, className="mb-2")
+mindate = dbc.Col(mindate, xs=12, sm=6, md=6, lg=6, className="mb-2")
+daterow = dbc.Row([mindate_label, mindate], className="gx-1")
 
 
 right = dbc.Col(
@@ -140,10 +141,10 @@ right = dbc.Col(
         html.Br(),
         Btn
     ],
-    width=dict(size=4, offset=1)
+    xs=12, sm=12, md=4, lg=4, offset=1, className="mb-2"
 )
 
-row = dbc.Row([left, right], align="top")
+row = dbc.Row([left, right], align="top", className="gx-1")
 
 badge = html.H5(dbc.Badge("Correlation Matrix", className="ms-1"))
 badge = mybadge("Correlation Matrix")
@@ -155,16 +156,17 @@ Corr = DataTable(
     id=name + "corr",
     style_header=style_header,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 Corr = dcc.Loading(id=name + "loading3", children=[Corr], type="circle")
 
-body = html.Div([
+body = dbc.Container([
     row,
     html.Hr(),
     badge2,
     html.Br(),
     Corr
-])
+], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

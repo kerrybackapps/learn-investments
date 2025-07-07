@@ -81,17 +81,17 @@ string0 = html.Div(id=name+"string0", style=text_style)
 string1 = html.Div(id=name+"string1", style=text_style)
 string2 = html.Div(id=name+"string2", style=text_style)
 
-col1 = dbc.Col([label2, label1, label0], width=dict(size=6, offset=2))
-col2 = dbc.Col([string2, string1, string0], md=4)
-row = dbc.Row([col1, col2])
+col1 = dbc.Col([label2, label1, label0], xs=12, sm=12, md=6, lg=6, offset=2, className="mb-2")
+col2 = dbc.Col([string2, string1, string0], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row = dbc.Row([col1, col2], className="gx-1")
 btn = dbc.Row(
     dbc.Col(btn, width={"size": 6, "offset": 3})
 )
-left = dbc.Col([btn, html.Br(), slider1, slider2, slider3, html.Br(), row], md=4)
-middle = dbc.Col(dcc.Graph(id=name+"fig1"), md=4)
-right = dbc.Col(dcc.Graph(id=name+"fig2"), md=4)
+left = dbc.Col([btn, html.Br(), slider1, slider2, slider3, html.Br(), row], xs=12, sm=12, md=4, lg=4, className="mb-2")
+middle = dbc.Col(dcc.Graph(id=name+"fig1"), xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(dcc.Graph(id=name+"fig2"), xs=12, sm=12, md=4, lg=4, className="mb-2")
 
-body = dbc.Row([left, middle, right], align="top")
+body = dbc.Container(dbc.Row([left, middle, right], align="top", className="gx-1"), fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
