@@ -71,38 +71,38 @@ btn = dbc.Button(
     className="me-1",
 )
 
-col1 = dbc.Col([slider1, slider2], md=4)
-col2 = dbc.Col([slider3, slider4], md=4)
-col3 = dbc.Col([slider5, slider6], md=4)
-row1 = dbc.Row([col1, col2, col3], align='top')
+col1 = dbc.Col([slider1, slider2], xs=12, sm=6, md=4, lg=4, className="mb-2")
+col2 = dbc.Col([slider3, slider4], xs=12, sm=6, md=4, lg=4, className="mb-2")
+col3 = dbc.Col([slider5, slider6], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([col1, col2, col3], align='top', className="gx-1")
 
 
-col1 = dbc.Col(html.Div('Black-Scholes call value:'), md=3)
+col1 = dbc.Col(html.Div('Black-Scholes call value:'), xs=12, sm=6, md=3, lg=3, className="mb-2")
 call_bs = html.Div(id=name + 'call_bs', style={"color": blue, "font-weight": "bold"})
-col2 = dbc.Col(call_bs, md=3)
-col3 = dbc.Col(html.Div('Black-Scholes put value:'), md=3)
+col2 = dbc.Col(call_bs, xs=12, sm=6, md=3, lg=3, className="mb-2")
+col3 = dbc.Col(html.Div('Black-Scholes put value:'), xs=12, sm=6, md=3, lg=3, className="mb-2")
 put_bs = html.Div(id=name + 'put_bs', style={"color": red, "font-weight": "bold"})
-col4 = dbc.Col(put_bs, md=3)
-row2 = dbc.Row([col3, col4, col1, col2], align='center')
+col4 = dbc.Col(put_bs, xs=12, sm=6, md=3, lg=3, className="mb-2")
+row2 = dbc.Row([col3, col4, col1, col2], align='center', className="gx-1")
 
-row3 = dbc.Row(dbc.Col(btn, width=dict(size=2, offset=5)))
+row3 = dbc.Row(dbc.Col(btn, xs=12, sm=6, md=2, lg=2, className="mx-auto text-center mb-2"), className="gx-1")
 
-col1 = dbc.Col(html.Div("Discounted average call value:"), md=6)
+col1 = dbc.Col(html.Div("Discounted average call value:"), xs=12, sm=6, md=6, lg=6, className="mb-2")
 call_mc = dcc.Loading(html.Div(id=name + 'call_mc', style={'color': blue}), type="circle")
-col2 = dbc.Col(call_mc, md=6)
-rowa = dbc.Row([col1, col2])
+col2 = dbc.Col(call_mc, xs=12, sm=6, md=6, lg=6, className="mb-2")
+rowa = dbc.Row([col1, col2], className="gx-1")
 
-col1 = dbc.Col(html.Div("Discounted average put value:"), md=6)
+col1 = dbc.Col(html.Div("Discounted average put value:"), xs=12, sm=6, md=6, lg=6, className="mb-2")
 put_mc = dcc.Loading(html.Div(id=name + 'put_mc', style={'color': red}), type="circle")
-col2 = dbc.Col(put_mc, md=6)
-rowb = dbc.Row([col1, col2])
+col2 = dbc.Col(put_mc, xs=12, sm=6, md=6, lg=6, className="mb-2")
+rowb = dbc.Row([col1, col2], className="gx-1")
 
-col1 = dbc.Col([dcc.Loading(dcc.Graph(id=name+"fig"), type="circle")], md=6)
-col2 = dbc.Col([rowb, html.Br(), dcc.Loading(dcc.Graph(id=name+"fig_put"), type="circle")], md=3)
-col3 = dbc.Col([rowa, html.Br(), dcc.Loading(dcc.Graph(id=name+"fig_call"), type="circle")], md=3)
-row4 = dbc.Row([col1, col2, col3], align='end')
+col1 = dbc.Col([dcc.Loading(dcc.Graph(id=name+"fig"), type="circle")], xs=12, sm=12, md=6, lg=6, className="mb-2")
+col2 = dbc.Col([rowb, html.Br(), dcc.Loading(dcc.Graph(id=name+"fig_put"), type="circle")], xs=12, sm=6, md=3, lg=3, className="mb-2")
+col3 = dbc.Col([rowa, html.Br(), dcc.Loading(dcc.Graph(id=name+"fig_call"), type="circle")], xs=12, sm=6, md=3, lg=3, className="mb-2")
+row4 = dbc.Row([col1, col2, col3], align='end', className="gx-1")
 
-body = html.Div([row1, html.Hr(), row2, html.Hr(), row3, html.Br(), row4])
+body = dbc.Container([row1, html.Hr(), row2, html.Hr(), row3, html.Br(), row4], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

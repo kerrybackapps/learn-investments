@@ -54,6 +54,7 @@ tbl1 = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 tbl2 = DataTable(
@@ -62,25 +63,26 @@ tbl2 = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 
-col1 = dbc.Col([label6, inpt6, html.Br(), label1, inpt1], md=4)
-col2 = dbc.Col([label5, inpt5, html.Br(), label2, inpt2], md=4)
-col3 = dbc.Col([label3, inpt3, html.Br(), label4, inpt4], md=4)
-row1 = dbc.Row([col1, col2, col3])
+col1 = dbc.Col([label6, inpt6, html.Br(), label1, inpt1], xs=12, sm=6, md=4, lg=4, className="mb-2")
+col2 = dbc.Col([label5, inpt5, html.Br(), label2, inpt2], xs=12, sm=6, md=4, lg=4, className="mb-2")
+col3 = dbc.Col([label3, inpt3, html.Br(), label4, inpt4], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([col1, col2, col3], className="gx-1")
 
-col0 = dbc.Col(md=1)
-col1 = dbc.Col(title1, md=4)
-col2 = dbc.Col(title2, md=4)
-row2 = dbc.Row([col0, col1, col0, col0, col2, col0], align="center")
+col0 = dbc.Col(xs=0, sm=0, md=1, lg=1)
+col1 = dbc.Col(title1, xs=12, sm=6, md=4, lg=4, className="text-center mb-2")
+col2 = dbc.Col(title2, xs=12, sm=6, md=4, lg=4, className="text-center mb-2")
+row2 = dbc.Row([col0, col1, col0, col0, col2, col0], align="center", className="gx-1")
 
-col0 = dbc.Col(md=1)
-col1 = dbc.Col(tbl1, md=4)
-col2 = dbc.Col(tbl2, md=4)
-row3 = dbc.Row([col0, col1, col0, col0, col2, col0], align="center")
+col0 = dbc.Col(xs=0, sm=0, md=1, lg=1)
+col1 = dbc.Col(tbl1, xs=12, sm=6, md=4, lg=4, className="mb-2")
+col2 = dbc.Col(tbl2, xs=12, sm=6, md=4, lg=4, className="mb-2")
+row3 = dbc.Row([col0, col1, col0, col0, col2, col0], align="center", className="gx-1")
 
-body = html.Div([row1, html.Hr(),  row2, row3])
+body = dbc.Container([row1, html.Hr(), row2, row3], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
