@@ -103,14 +103,14 @@ balloon = dbc.Row([balloonLabel, dbc.Col(balloon, md=6)])
 rate = dbc.Row([rateLabel, dbc.Col(rate, md=6)])
 
 left = dbc.Col([slider0], md=5)
-middle = dbc.Col(label, width=dict(size=2, offset=1))
+middle = dbc.Col(label, width=dict(size=2), className="offset-md-1")
 right = dbc.Col([radio0], md=3)
 
 header = dbc.Row([left, middle, right], align="center")
 
 paymentCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Payment"), width={"size":4, "offset":4})),
+        dbc.Row(dbc.Col(mybadge("Payment"), width={"size":4}, className="offset-md-4")),
         html.Br(),
         *paymentSliders,
         html.Br(),
@@ -120,7 +120,7 @@ paymentCol = dbc.Col(
 )
 principalCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Principal"), width={"size":4, "offset":4})),
+        dbc.Row(dbc.Col(mybadge("Principal"), width={"size":4}, className="offset-md-4")),
         html.Br(),
         *principalSliders,
         html.Br(),
@@ -131,7 +131,7 @@ principalCol = dbc.Col(
 
 balloonCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Balloon"), width={"size":4, "offset":4})),
+        dbc.Row(dbc.Col(mybadge("Balloon"), width={"size":4}, className="offset-md-4")),
         html.Br(),
         *balloonSliders,
         html.Br(),
@@ -142,7 +142,7 @@ balloonCol = dbc.Col(
 
 rateCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Rate"), width={"size":4, "offset":4})),
+        dbc.Row(dbc.Col(mybadge("Rate"), width={"size":4}, className="offset-md-4")),
         html.Br(),
         *rateSliders,
         html.Br(),

@@ -79,7 +79,7 @@ col1 = dbc.Col(slider1, md=4)
 col2 = dbc.Col(slider2, md=4)
 col3 = dbc.Col(slider3, md=4)
 row1 = dbc.Row([col1, col2, col3])
-row2 = dbc.Row(dbc.Col(btn, width=dict(size=2, offset=5)))
+row2 = dbc.Row(dbc.Col(btn, width=dict(size=2), className="offset-md-5"))
 
 # CAPM alpha
 capm_alpha = html.Div(id=name + "a_mm", style=text_style)

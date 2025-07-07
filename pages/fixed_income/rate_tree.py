@@ -98,7 +98,7 @@ right = dbc.Col(fig, md=6)
 row = dbc.Row([left, mid, right], align="top")
 
 badge = mybadge("Valuing a Zero-Coupon Bond")
-badge = dbc.Col(badge, width={"size": 2, "offset": 5})
+badge = dbc.Col(badge, width={"size": 2}, className="offset-md-5")
 badge = dbc.Row(badge)
 
 text2 = """
@@ -123,7 +123,7 @@ text2 = html.Div(dcc.Markdown(text2, mathjax=True), style={"background-color": g
 slider = Slider(
     "Maturity of zero-coupon bond", mn=0, mx=30, step=0.5, value=5, tick=None, kind="tip", name=name+"maturity"
 )
-slider = dbc.Col(slider, width=dict(size=4, offset=1))
+slider = dbc.Col(slider, width=dict(size=4), className="offset-md-1")
 
 fig = dcc.Graph(name+"example")
 
@@ -131,7 +131,7 @@ priceresult = html.Div(id=name+"price", style=text_style)
 rateresult = html.Div(id=name+"rate", style=text_style)
 pricetext = html.Div("Date-0 bond price")
 ratetext = html.Div("Spot rate")
-col1 = dbc.Col([pricetext, html.Br(), ratetext], width=dict(size=2, offset=2))
+col1 = dbc.Col([pricetext, html.Br(), ratetext], width=dict(size=2), className="offset-md-2")
 col2 = dbc.Col([priceresult, html.Br(), rateresult], md=2)
 row2 = dbc.Row([slider, col1, col2], align="center")
 

@@ -121,7 +121,7 @@ left = dbc.Col(
         dbc.Label("Enter Tickers"),
         Tickers
     ],
-    xs=12, sm=12, md=5, lg=5, offset=1, className="mb-2"
+    xs=12, sm=12, md=5, lg=5, className="mb-2 offset-md-1"
 )
 
 
@@ -141,7 +141,7 @@ right = dbc.Col(
         html.Br(),
         Btn
     ],
-    xs=12, sm=12, md=4, lg=4, offset=1, className="mb-2"
+    xs=12, sm=12, md=4, lg=4, className="mb-2 offset-md-1"
 )
 
 row = dbc.Row([left, right], align="top", className="gx-1")

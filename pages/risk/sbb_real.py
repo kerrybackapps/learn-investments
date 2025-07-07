@@ -49,7 +49,7 @@ slider = dcc.RangeSlider(
 )
 slider = dbc.Col(
     [dbc.Label("Date Range", html_for=name + "slider"), slider],
-    xs=12, sm=12, md=6, lg=6, offset=3, className="mb-2"
+    xs=12, sm=12, md=6, lg=6, className="mb-2 offset-md-3"
 )
 
 graph_std = dbc.Col(dcc.Graph(id=name + "fig1"), xs=12, sm=12, md=6, lg=6, className="mb-2")

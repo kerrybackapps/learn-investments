@@ -83,7 +83,7 @@ string2 = html.Div(id=name+"string2", style=text_style)
 stats_col1 = dbc.Col([label2, label1, label0], xs=12, sm=12, md=8, lg=8, className="mb-2")
 stats_col2 = dbc.Col([string2, string1, string0], xs=12, sm=12, md=4, lg=4, className="mb-2")
 stats_display_row = dbc.Row([stats_col1, stats_col2], className="gx-1")
-stats_display_col = dbc.Col(stats_display_row, xs=12, sm=12, md=3, lg=3, offset=1, className="mb-2")
+stats_display_col = dbc.Col(stats_display_row, xs=12, sm=12, md=3, lg=3, className="mb-2 offset-md-1")
 
 input_slider_row = dbc.Row([slider_col, inpt_col], align="center", className="gx-1")
 input_area_col = dbc.Col(input_slider_row, xs=12, sm=12, md=8, lg=8, className="mb-2")
