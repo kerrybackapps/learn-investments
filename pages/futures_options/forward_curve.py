@@ -23,12 +23,12 @@ text = """ Historical forward curves are shown for commodities, currencies, and 
 name = "forward-curve"
 
 drop = dcc.Dropdown(keys, placeholder="Select a contract", id=name + "drop", style={"backgroundColor": lightblue})
-drop = dbc.Col(drop, width={"size": 6, "offset": 3})
-drop = dbc.Row(drop)
+drop = dbc.Col(drop, xs=12, sm=8, md=6, lg=6, className="mb-2", width={"size": 6, "offset": 3})
+drop = dbc.Row([drop], className="gx-1")
 
 graph = dcc.Graph(id=name + "fig")
 loading = dcc.Loading(id=name + "loading", children=[html.Div(graph)], type="circle",)
-body = html.Div([drop, html.Br(), loading])
+body = dbc.Container([drop, html.Br(), loading], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

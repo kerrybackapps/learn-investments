@@ -29,15 +29,15 @@ inputs = [name + "input" + str(i) for i in range(3 * numoptions + 4)]
 
 dropc = dcc.Dropdown(["None", "Long", "Short"], value="None", id=inputs[0], style={"backgroundColor": lightblue})
 dropx = dcc.Dropdown([i for i in range(5, 105, 5)], placeholder="Amount", id=inputs[1], style={"backgroundColor": lightblue})
-dropc = dbc.Col([dbc.Label("Position in cash", html_for=inputs[0]), dropc], md=8)
-dropx = dbc.Col(dropx, md=4)
-row0 = dbc.Row([dropc, dropx], align="end", className="g-0")
+dropc = dbc.Col([dbc.Label("Position in cash", html_for=inputs[0]), dropc], xs=12, sm=8, md=8, lg=8, className="mb-2")
+dropx = dbc.Col(dropx, xs=12, sm=4, md=4, lg=4, className="mb-2")
+row0 = dbc.Row([dropc, dropx], align="end", className="gx-1")
 
 dropu = dcc.Dropdown(["None", "Long", "Short"], value="None", id=inputs[2], style={"backgroundColor": lightblue})
 dropq = dcc.Dropdown([i for i in range(1, 4)], placeholder="Quantity", id=inputs[3], style={"backgroundColor": lightblue})
-dropu = dbc.Col([dbc.Label("Position in underlying", html_for=inputs[2]), dropu], md=8)
-dropq = dbc.Col(dropq, md=4)
-row1 = dbc.Row([dropu, dropq], align="end", className="g-0")
+dropu = dbc.Col([dbc.Label("Position in underlying", html_for=inputs[2]), dropu], xs=12, sm=8, md=8, lg=8, className="mb-2")
+dropq = dbc.Col(dropq, xs=12, sm=4, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([dropu, dropq], align="end", className="gx-1")
 
 
 inpts = [
@@ -62,17 +62,17 @@ for i in range(numoptions):
         id=inputs[3 * i + 6],
         style={"backgroundColor": lightblue}
     )
-    drop1 = dbc.Col(drop1)
-    drop2 = dbc.Col(drop2)
-    drop3 = dbc.Col(drop3)
-    row = dbc.Row([drop1, drop2, drop3], className="g-0")
+    drop1 = dbc.Col(drop1, xs=12, sm=6, md=4, lg=4, className="mb-2")
+    drop2 = dbc.Col(drop2, xs=12, sm=6, md=4, lg=4, className="mb-2")
+    drop3 = dbc.Col(drop3, xs=12, sm=6, md=4, lg=4, className="mb-2")
+    row = dbc.Row([drop1, drop2, drop3], className="gx-1")
     inpts.append(row)
 
 graph = dcc.Graph(id=name + "fig")
 
-left = dbc.Col(inpts, md=6)
-right = dbc.Col(graph, md=6)
-body = dbc.Row([left, right], align="center")
+left = dbc.Col(inpts, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+body = dbc.Container([dbc.Row([left, right], align="center", className="gx-1")], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

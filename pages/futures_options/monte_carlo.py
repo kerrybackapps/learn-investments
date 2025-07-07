@@ -22,7 +22,7 @@ text = """
     and $T$ is the number of years to maturity of the option.  The Black-Scholes formula
     can be derived by assuming the stock earns the risk-free rate on
     average and discounting the expected option value at maturity at the risk-free rate.  This page estimates the expected
-    values at maturity by simulation.  20,000 values of the underlying 
+    values at maturity by simulation.  10,000 values of the underlying 
     asset price $S_T$ at the option maturity are simulated as the exponential of
     $\log S_T = \log S_0 + (r-q-0.5\sigma^2)T + \sigma\sqrt{T}\epsilon$, 
     where $\epsilon$ is a simulated standard normal random variable, and $r$ is the interest rate, $q$ is the dividend

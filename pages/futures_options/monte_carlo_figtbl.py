@@ -6,10 +6,10 @@ from pages.formatting import smallfig, blue, red
 
 def figtbl(n_clicks, S, K, sigma, r, q, T):
 
-    sigma /= 100
-    r /= 100
-    q /= 100
-    N = 20000
+    sigma = 100
+    r = 100
+    q = 100
+    N = 10000
 
     d1 = (np.log(S / K) + (r - q + 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     N1 = norm.cdf(d1)

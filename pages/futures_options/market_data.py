@@ -24,7 +24,7 @@ text = """This page presents market data on call and put options.  The data is p
 name = "market-data"
 
 ticker = myinput(id=name + "ticker", placeholder="Enter a ticker")
-ticker = dbc.Col([dbc.Label('Ticker'), ticker], md=4)
+ticker = dbc.Col([dbc.Label('Ticker'), ticker], xs=12, sm=6, md=4, lg=4, className="mb-2")
 
 kind = dcc.Dropdown(
     ["call", "put"],
@@ -32,17 +32,17 @@ kind = dcc.Dropdown(
     id=name + "security",
     style={"backgroundColor": lightblue}
 )
-kind = dbc.Col([dbc.Label('Call or Put'), kind], md=4)
+kind = dbc.Col([dbc.Label('Call or Put'), kind], xs=12, sm=6, md=4, lg=4, className="mb-2")
 
 maturity = dcc.Dropdown(placeholder="Select a maturity", id=name + "maturity", style={"backgroundColor": lightblue})
 maturity = dcc.Loading(id=name + "loading1", children=[maturity], type="circle")
-maturity = dbc.Col([dbc.Label('Maturity'), maturity], md=4)
+maturity = dbc.Col([dbc.Label('Maturity'), maturity], xs=12, sm=6, md=4, lg=4, className="mb-2")
 
-row1 = dbc.Row([ticker, kind, maturity])
+row1 = dbc.Row([ticker, kind, maturity], className="gx-1")
 
 price = html.Div(id=name + "price", style=text_style)
-price = dbc.Col(price, width={'size': 3, 'offset': 5})
-row2 = dbc.Row([price])
+price = dbc.Col(price, xs=12, sm=6, md=3, lg=3, className="mb-2", width={'size': 3, 'offset': 5})
+row2 = dbc.Row([price], className="gx-1")
 row2 = dcc.Loading(id=name + "loading3", children=row2, type="circle")
 
 cols = [
@@ -65,11 +65,12 @@ tbl = DataTable(
     style_as_list_view=True,
     # fixed_rows={'headers': True}, style_table={'height': 400},
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 tbl = dcc.Loading(id=name + "loading2", children=[tbl], type="circle")
 
-body = html.Div([row1, html.Hr(), row2, html.Br(), tbl])
+body = dbc.Container([row1, html.Hr(), row2, html.Br(), tbl], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -24,25 +24,25 @@ text = """Implied volatilities calculated from market option prices are plotted 
 name = "market-implied-vols"
 
 ticker = myinput(id=name + "ticker",  placeholder="Enter a ticker")
-ticker = dbc.Col([dbc.Label('Ticker'), ticker], width={"size": 4, "offset": 1})
+ticker = dbc.Col([dbc.Label('Ticker'), ticker], xs=12, sm=6, md=4, lg=4, className="mb-2", width={"size": 4, "offset": 1})
 
 
 maturity = dcc.Dropdown(placeholder="Select a maturity", id=name + "maturity", style={"backgroundColor": lightblue})
 maturity = dcc.Loading(id=name + "loading1", children=[maturity], type="circle")
-maturity = dbc.Col([dbc.Label('Maturity'), maturity], width={"size": 4, "offset": 2})
+maturity = dbc.Col([dbc.Label('Maturity'), maturity], xs=12, sm=6, md=4, lg=4, className="mb-2", width={"size": 4, "offset": 2})
 
-row1 = dbc.Row([ticker, maturity])
+row1 = dbc.Row([ticker, maturity], className="gx-1")
 
 price = html.Div(id=name + "price", style=text_style)
-price = dbc.Col(price, width={"size": 3, "offset": 5})
-row2 = dbc.Row([price])
+price = dbc.Col(price, xs=12, sm=6, md=3, lg=3, className="mb-2", width={"size": 3, "offset": 5})
+row2 = dbc.Row([price], className="gx-1")
 row2 = dcc.Loading(id=name + "loading3", children=row2, type="circle")
 
 fig = dcc.Graph(id=name + 'fig')
 
 fig = dcc.Loading(id=name + "loading2", children=[fig], type="circle")
 
-body = html.Div([row1, html.Hr(), row2, fig])
+body = dbc.Container([row1, html.Hr(), row2, fig], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

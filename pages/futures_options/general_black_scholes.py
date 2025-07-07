@@ -63,18 +63,19 @@ tbl = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 label1 = dbc.Label('Enter present value of asset to be received')
 label2 = dbc.Label('Enter present value of asset to be delivered')
 label3 = dbc.Label('Enter volatility > 0 in percent')
 label4 = dbc.Label('Enter time to maturity > 0 in years')
-left = dbc.Col([label1, inpt1, html.Br(), label2, inpt2], md=4)
-mid = dbc.Col([label3, inpt3, html.Br(), label4, inpt4], md=4)
-right = dbc.Col(tbl, md=4)
-row = dbc.Row([left, mid, right], align='top')
+left = dbc.Col([label1, inpt1, html.Br(), label2, inpt2], xs=12, sm=12, md=4, lg=4, className="mb-2")
+mid = dbc.Col([label3, inpt3, html.Br(), label4, inpt4], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(tbl, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row = dbc.Row([left, mid, right], align='top', className="gx-1")
 
-body = html.Div(row)
+body = dbc.Container([row], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -56,9 +56,9 @@ slider4 = Slider(
 
 dropu = dcc.Dropdown(["None", "Long", "Short"], value="None", id=inputs[4], style={"backgroundColor": lightblue})
 dropq = dcc.Dropdown([i for i in range(1, 4)], placeholder="Quantity", id=inputs[5], style={"backgroundColor": lightblue})
-dropu = dbc.Col([dbc.Label("Position in underlying", html_for=inputs[0]), dropu], md=9)
-dropq = dbc.Col(dropq, md=3)
-row = dbc.Row([dropu, dropq], align="end", className="g-0")
+dropu = dbc.Col([dbc.Label("Position in underlying", html_for=inputs[0]), dropu], xs=12, sm=9, md=9, lg=9, className="mb-2")
+dropq = dbc.Col(dropq, xs=12, sm=3, md=3, lg=3, className="mb-2")
+row = dbc.Row([dropu, dropq], align="end", className="gx-1")
 
 inpts = [
     row,
@@ -86,11 +86,11 @@ for i in range(numoptions):
         id=inputs[4 * i + 9],
         style={"backgroundColor": lightblue}
     )
-    drop1 = dbc.Col(drop1)
-    drop2 = dbc.Col(drop2)
-    drop3 = dbc.Col(drop3)
-    drop4 = dbc.Col(drop4)
-    row = dbc.Row([drop1, drop2, drop3, drop4], className="g-0")
+    drop1 = dbc.Col(drop1, xs=12, sm=6, md=3, lg=3, className="mb-2")
+    drop2 = dbc.Col(drop2, xs=12, sm=6, md=3, lg=3, className="mb-2")
+    drop3 = dbc.Col(drop3, xs=12, sm=6, md=3, lg=3, className="mb-2")
+    drop4 = dbc.Col(drop4, xs=12, sm=6, md=3, lg=3, className="mb-2")
+    row = dbc.Row([drop1, drop2, drop3, drop4], className="gx-1")
     inpts.append(row)
 
 string1 = html.Div(id=name + "string1")
@@ -100,18 +100,18 @@ string2a = html.Div(id=name+"string3", style=text_style)
 
 graph = dcc.Graph(id=name + "fig")
 
-col1 = dbc.Col([slider1, slider2], md=6)
-col2 = dbc.Col([slider3, slider4], md=6)
-row1 = dbc.Row([col1, col2])
+col1 = dbc.Col([slider1, slider2], xs=12, sm=12, md=6, lg=6, className="mb-2")
+col2 = dbc.Col([slider3, slider4], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([col1, col2], className="gx-1")
 
-left = dbc.Col(inpts, md=6)
-col1 = dbc.Col([string1, string1a], md=6)
-col2 = dbc.Col([string2, string2a], md=6)
-row = dbc.Row([col1, col2])
-right = dbc.Col([row, html.Br(), graph])
-row2 = dbc.Row([left, html.Br(), right], align="top")
+left = dbc.Col(inpts, xs=12, sm=12, md=6, lg=6, className="mb-2")
+col1 = dbc.Col([string1, string1a], xs=12, sm=12, md=6, lg=6, className="mb-2")
+col2 = dbc.Col([string2, string2a], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row = dbc.Row([col1, col2], className="gx-1")
+right = dbc.Col([row, html.Br(), graph], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, html.Br(), right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 layout = Layout(
     title=title,
     runtitle=runtitle,
