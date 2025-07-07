@@ -141,11 +141,11 @@ slider11 = Slider(
 
 graph = dcc.Graph(id=name + "fig")
 
-left = dbc.Col([slider1, slider2, slider3, slider10], md=4)
-middle = dbc.Col([slider4, slider5, slider6, slider11], md=4)
-right = dbc.Col([slider7, slider8, slider9], md=4)
-row = dbc.Row([left, middle, right], align="top")
-body = html.Div([row, html.Br(), graph])
+left = dbc.Col([slider1, slider2, slider3, slider10], xs=12, sm=12, md=4, lg=4, xl=4)
+middle = dbc.Col([slider4, slider5, slider6, slider11], xs=12, sm=12, md=4, lg=4, xl=4)
+right = dbc.Col([slider7, slider8, slider9], xs=12, sm=12, md=4, lg=4, xl=4)
+row = dbc.Row([left, middle, right], align="top", gutter=3)
+body = dbc.Container(html.Div([row, html.Br(), graph]))
 
 layout = Layout(
     title=title,

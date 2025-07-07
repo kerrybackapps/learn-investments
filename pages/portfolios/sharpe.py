@@ -159,31 +159,31 @@ slider12 = Slider(
 graph = dcc.Graph(id=name + "fig")
 
 badge = html.H5(dbc.Badge("Results", className="ms-1"))
-badge = dbc.Col(badge, width={"size": 4, "offset": 5})
-badge = dbc.Row(badge)
+badge = dbc.Col(badge, xs=12, sm=12, md=4, lg=4, xl=4, width={"offset": 5})
+badge = dbc.Row(badge, gutter=3)
 
-left   = dbc.Col([slider1, slider2, slider3], md=4)
-middle = dbc.Col([slider4, slider5, slider6], md=4)
-right  = dbc.Col([slider7, slider8, slider9], md=4)
-row = dbc.Row([left, middle, right], align="center")
+left   = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=4, lg=4, xl=4)
+middle = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=4, lg=4, xl=4)
+right  = dbc.Col([slider7, slider8, slider9], xs=12, sm=12, md=4, lg=4, xl=4)
+row = dbc.Row([left, middle, right], align="center", gutter=3)
 
 col1 = dbc.Col(
     html.Div('Correlations are physically possible and assets are not linearly related?'),
-    width={'size': 6, 'offset': 2}
+    xs=12, sm=12, md=8, lg=8, xl=8, width={'offset': 2}
 )
 col2 = dbc.Col(
     html.Div(id=name+'PDCov', style=text_style),
-    width={'size': 1}
+    xs=12, sm=12, md=2, lg=2, xl=2
 )
-row2 = dbc.Row([col1, col2])
+row2 = dbc.Row([col1, col2], gutter=3)
 
-left = dbc.Col(slider10, md=4)
-mid = dbc.Col(slider11, md=4)
-right = dbc.Col(slider12, md=4)
-row3 = dbc.Row([left, mid, right])
+left = dbc.Col(slider10, xs=12, sm=12, md=4, lg=4, xl=4)
+mid = dbc.Col(slider11, xs=12, sm=12, md=4, lg=4, xl=4)
+right = dbc.Col(slider12, xs=12, sm=12, md=4, lg=4, xl=4)
+row3 = dbc.Row([left, mid, right], gutter=3)
 
-body = html.Div([row, html.Hr(),
-                 row2, html.Hr(), row3, html.Br(), graph])
+body = dbc.Container(html.Div([row, html.Hr(),
+                 row2, html.Hr(), row3, html.Br(), graph]))
 
 layout = Layout(
     title=title,

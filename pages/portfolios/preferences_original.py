@@ -96,15 +96,15 @@ graph = dcc.Graph(id=name + "fig")
 
 ########## PAGE LAYOUT
 # Top row - inputs
-left0  = dbc.Col([slider1, slider2, slider3], md=6)
-right0 = dbc.Col([slider4, slider5, slider6], md=6)
-row0 = dbc.Row([left0, right0], align='center')
+left0  = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=6, lg=6, xl=6)
+right0 = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=6, lg=6, xl=6)
+row0 = dbc.Row([left0, right0], align='center', gutter=3)
 
 # 2nd row - figures
-row1 = dbc.Row(graph,align='center')
+row1 = dbc.Row(graph, align='center', gutter=3)
 
 # Combine rows
-body = html.Div([row0, html.Br(), row1])
+body = dbc.Container(html.Div([row0, html.Br(), row1]))
 
 layout = Layout(
     title=title,

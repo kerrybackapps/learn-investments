@@ -44,11 +44,11 @@ slider2 = Slider(
 
 graph = dcc.Graph(id=name + "fig")
 
-left = dbc.Col(slider1, md=6)
-right = dbc.Col(slider2, md=6)
-row = dbc.Row([left, right], align="center")
+left = dbc.Col(slider1, xs=12, sm=12, md=6, lg=6, xl=6)
+right = dbc.Col(slider2, xs=12, sm=12, md=6, lg=6, xl=6)
+row = dbc.Row([left, right], align="center", gutter=3)
 
-body = html.Div([row, html.Hr(), graph])
+body = dbc.Container(html.Div([row, html.Hr(), graph]))
 
 
 layout = Layout(
