@@ -36,7 +36,7 @@ tbl1 = DataTable(
     data=[{name+'date': i+1} for i in range(6)],
     style_header=style_header,
     style_data_conditional=style_data_conditional,
-    style_table={'overflowX': 'auto', 'minWidth': '100%'},
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 tbl2 = DataTable(
@@ -45,7 +45,7 @@ tbl2 = DataTable(
     data=[{name+'cashflow': -100}] + [{name+'cashflow': 30} for i in range(5)],
     style_header=style_header,
     style_data=style_editable,
-    style_table={'overflowX': 'auto', 'minWidth': '100%'},
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
 tbl3 = DataTable(
@@ -59,24 +59,24 @@ tbl3 = DataTable(
     style_header=style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
-    style_table={'overflowX': 'auto', 'minWidth': '100%'},
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
-tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=1, className="mb-2")
-tbl2 = dbc.Col(tbl2, xs=12, sm=12, md=2, className="mb-2")
-tbl3 = dbc.Col(tbl3, xs=12, sm=12, md=4, className="mb-2")
+tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=1, lg=1, className="mb-2")
+tbl2 = dbc.Col(tbl2, xs=12, sm=6, md=2, lg=2, className="mb-2")
+tbl3 = dbc.Col(tbl3, xs=12, sm=12, md=4, lg=4, className="mb-2")
 left = [dbc.Label("Enter integer number of periods"),
     Num,
     html.Br(),
     html.Br(),
     dbc.Label("Enter discount rate in %"),
     Rate]
-left = dbc.Col(left, xs=12, sm=6, md=3, className="mb-2")
+left = dbc.Col(left, xs=12, sm=6, md=3, lg=3, className="mb-2")
 right = [dbc.Label("NPV", html_for=name + "npv"), NPV]
-right = dbc.Col(right, xs=8, sm=4, md=2, className="mb-2")
+right = dbc.Col(right, xs=12, sm=6, md=2, lg=2, className="mb-2")
 
-row = dbc.Row([left, tbl1, tbl2, tbl3, right], align="top", className="g-2")
-body = html.Div(row)
+row = dbc.Row([left, tbl1, tbl2, tbl3, right], align="top", className="gx-1")
+body = dbc.Container(row, fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
