@@ -93,7 +93,21 @@ tbl3 = DataTable(
     css=css_no_header,
     style_as_list_view=True,
     style_data=style_dark,
-    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
+    style_cell_conditional=[
+        {
+            'if': {'column_id': name + 'col1'},
+            'width': '60%',
+            'textAlign': 'left',
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        {
+            'if': {'column_id': name + 'col2'},
+            'width': '40%',
+            'textAlign': 'right'
+        }
+    ]
 )
 
 tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=6, lg=6, className="mb-2")
