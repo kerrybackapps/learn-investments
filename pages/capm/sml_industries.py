@@ -47,8 +47,8 @@ slider = dcc.RangeSlider(
     tooltip={"placement": "bottom", "always_visible": True},
 )
 slider = html.Div([dbc.Label("Select date range", html_for=name + "slider"), slider])
-slider = dbc.Row(dbc.Col(slider, width={"size": 6, "offset": 3}))
-body = html.Div([slider, html.Br(), graph])
+slider = dbc.Row(dbc.Col(slider, width={"size": 6}, className="offset-md-3"))
+body = dbc.Container([slider, html.Br(), graph], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -42,18 +42,19 @@ tbl = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 tbl = dcc.Loading(id=name + "loading", children=tbl, type="circle")
 
 inpt = myinput(id=name + "ticker", placeholder="Enter a ticker")
-inpt = dbc.Col(inpt, width={"size": 4, "offset": 4})
+inpt = dbc.Col(inpt, width={"size": 4}, className="offset-md-4")
 row1 = html.Div(inpt)
 
-left = dbc.Col(tbl, md=3)
-right = dbc.Col(graph, md=9)
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col(tbl, xs=12, sm=12, md=3, lg=3, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=9, lg=9, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

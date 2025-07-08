@@ -74,18 +74,18 @@ data_graph = dcc.Graph(id=name + "datafig")
 
 ########## PAGE LAYOUT
 # Top row - inputs
-left0  = dbc.Col([slider1, slider2], md=6)
-right0 = dbc.Col([slider3], md=6)
-row0 = dbc.Row([left0, right0], align='center')
+left0  = dbc.Col([slider1, slider2], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right0 = dbc.Col([slider3], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row0 = dbc.Row([left0, right0], align='center', className="gx-1")
 
 # 2nd row - figures
-left1  = dbc.Col(sim_graph, md=6)  
-right1 = dbc.Col(data_graph, md=6)
-row1 = dbc.Row([left1,right1],align='center')
+left1  = dbc.Col(sim_graph, xs=12, sm=12, md=6, lg=6, className="mb-2")  
+right1 = dbc.Col(data_graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([left1,right1],align='center', className="gx-1")
 
 # Combine rows
 # body = html.Div([btn, row0, html.Hr(), html.Br(), text1, row1, html.Br(), text2, row2, html.Br(), text3, row3])
-body = html.Div([row0, html.Br(), row1])
+body = dbc.Container([row0, html.Br(), row1], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

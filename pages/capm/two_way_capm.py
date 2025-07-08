@@ -51,16 +51,16 @@ slider = dcc.RangeSlider(
 )
 slider = html.Div([dbc.Label("Date Range"), slider])
 
-left = dbc.Col(drop, md=6)
-right = dbc.Col(slider, md=6)
-row = dbc.Row([left, right], align="center")
+left = dbc.Col(drop, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(slider, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row = dbc.Row([left, right], align="center", className="gx-1")
 
-body = html.Div(
+body = dbc.Container(
     [
         row,
         html.Br(),
         dcc.Loading(html.Div(id=name+'content'), id=name+'loading', type='circle')
-    ]
+    ], fluid=True, className="px-1"
 )
 
 layout = Layout(
