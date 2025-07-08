@@ -62,15 +62,15 @@ label = dbc.Label("Average annual inflation", html_for=name + "infl")
 infl = dbc.Row([dbc.Col(label, md=6), dbc.Col(infl, md=6)], align="center")
 
 
-fig1 = dbc.Col(dcc.Graph(id=name + "fig1"), md=6)
-fig2 = dbc.Col(dcc.Graph(id=name + "fig2"), md=6)
+fig1 = dbc.Col(dcc.Graph(id=name + "fig1"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+fig2 = dbc.Col(dcc.Graph(id=name + "fig2"), xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-left = dbc.Col([dates], md=6)
-right = dbc.Col([nominal, infl, real], width={"size": 4, "offset": 2})
-row1 = dbc.Row([left, right], align="top")
-row2 = dbc.Row([fig1, fig2], align="top")
+left = dbc.Col([dates], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([nominal, infl, real], xs=12, sm=12, md=4, lg=4, className="mb-2 offset-md-2")
+row1 = dbc.Row([left, right], align="top", className="gx-1")
+row2 = dbc.Row([fig1, fig2], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

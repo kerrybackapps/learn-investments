@@ -88,13 +88,13 @@ slider7 = Slider(
 
 graph = dcc.Graph(id=name + "fig")
 
-col1 = dbc.Col(html.Div('Ending balance:'), width={'size': 3, 'offset': 3})
+col1 = dbc.Col(html.Div('Ending balance:'), width={'size': 3}, className="offset-md-3")
 col2 = dbc.Col(html.Div(id=name+'string', style=text_style), width={'size': 2})
 row = dbc.Row([col1, col2])
 
-left = dbc.Col([slider1, slider2, slider3, slider4, slider5, slider6, slider7], md=4)
-right = dbc.Col([row, html.Br(), graph], md=8)
-body = dbc.Row([left, right], align="center")
+left = dbc.Col([slider1, slider2, slider3, slider4, slider5, slider6, slider7], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col([row, html.Br(), graph], xs=12, sm=12, md=8, lg=8, className="mb-2")
+body = dbc.Container(dbc.Row([left, right], align="center", className="gx-1"), fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

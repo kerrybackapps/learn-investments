@@ -113,27 +113,28 @@ tbl = DataTable(
     style_data=style_data,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
-left = dbc.Col([slider1, slider2, slider3, slider7])
-right = dbc.Col([slider4, slider5, slider6, slider8])
-row = dbc.Row([left, right], align="center")
+left = dbc.Col([slider1, slider2, slider3, slider7], xs=12, sm=6, md=6, lg=6, className="mb-2")
+right = dbc.Col([slider4, slider5, slider6, slider8], xs=12, sm=6, md=6, lg=6, className="mb-2")
+row = dbc.Row([left, right], align="center", className="gx-1")
 
 btn = dbc.Row(
     dbc.Col(
-        btn, width={"size": 3, "offset": 5}
+        btn, width={"size": 3}, className="offset-md-5"
     )
 )
-left = dbc.Col([btn, html.Br(), row], md=8)
-right = dbc.Col(tbl, md=4)
-row1 = dbc.Row([left, right], align="center")
+left = dbc.Col([btn, html.Br(), row], xs=12, sm=12, md=8, lg=8, className="mb-2")
+right = dbc.Col(tbl, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, right], align="center", className="gx-1")
 
-fig1 = dbc.Col(dcc.Graph(name + "fig1"), md=6)
-fig2 = dbc.Col(dcc.Graph(name + "fig2"), md=6)
-row2 = dbc.Row([fig1, fig2])
+fig1 = dbc.Col(dcc.Graph(name + "fig1"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+fig2 = dbc.Col(dcc.Graph(name + "fig2"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([fig1, fig2], className="gx-1")
 
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

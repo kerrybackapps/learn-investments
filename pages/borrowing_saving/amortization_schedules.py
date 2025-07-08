@@ -73,15 +73,15 @@ payment = html.Div(id=name + "payment", style=text_style)
 paymentLabel = dbc.Col(dbc.Label("Payment", html_for=name + "payment"), xs=6)
 payment = dbc.Row([paymentLabel, dbc.Col(payment, xs=6)])
 
-col1 = dbc.Col([slider3, html.Br(), radio], xs=4)
-col2 = dbc.Col([slider1, slider4], xs=4)
-col3 = dbc.Col([slider2, html.Br(), payment], xs=4)
-row1 = dbc.Row([col1, col2, col3], align="top")
+col1 = dbc.Col([slider3, html.Br(), radio], xs=12, sm=12, md=4, lg=4, className="mb-2")
+col2 = dbc.Col([slider1, slider4], xs=12, sm=12, md=4, lg=4, className="mb-2")
+col3 = dbc.Col([slider2, html.Br(), payment], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([col1, col2, col3], align="top", className="gx-1")
 
-left = dbc.Col(graph2, xs=6)
-right = dbc.Col(graph, xs=6)
-row2 = dbc.Row([left, right])
-body = html.Div([row1, html.Br(), row2])
+left = dbc.Col(graph2, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right], className="gx-1")
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

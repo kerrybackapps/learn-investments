@@ -89,14 +89,14 @@ drop = html.Div([dbc.Label("Select an input to solve for:", html_for=name + "dro
 
 graph = dcc.Graph(id=name + "fig")
 
-left = dbc.Col([slider1, slider2, slider3, slider4, slider5, slider6, slider7], md=4)
-col1 = dbc.Col(drop, md=4)
-col2 = dbc.Col(html.Div(id=name+'string1'), width={"size": 5, "offset": 1})
-col3 = dbc.Col(html.Div(id=name+'string2', style=text_style), md=2)
-row = dbc.Row([col1, col2, col3], align='center')
+left = dbc.Col([slider1, slider2, slider3, slider4, slider5, slider6, slider7], xs=12, sm=12, md=4, lg=4, className="mb-2")
+col1 = dbc.Col(drop, xs=12, sm=12, md=4, lg=4, className="mb-2")
+col2 = dbc.Col(html.Div(id=name+'string1'), xs=12, sm=12, md=5, lg=5, className="mb-2 offset-md-1")
+col3 = dbc.Col(html.Div(id=name+'string2', style=text_style), xs=12, sm=12, md=2, lg=2, className="mb-2")
+row = dbc.Row([col1, col2, col3], align='center', className="gx-1")
 
-right = dbc.Col([row, html.Br(), graph], md=8)
-body = dbc.Row([left, right], align="center")
+right = dbc.Col([row, html.Br(), graph], xs=12, sm=12, md=8, lg=8, className="mb-2")
+body = dbc.Container(dbc.Row([left, right], align="center", className="gx-1"), fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

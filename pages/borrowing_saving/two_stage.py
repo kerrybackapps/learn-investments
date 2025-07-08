@@ -70,6 +70,7 @@ tbl1 = DataTable(
     data=[{name+'date': i} for i in range(1,6)],
     style_header=style_header_dark,
     style_data=style_dark,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 tbl2 = DataTable(
@@ -78,6 +79,7 @@ tbl2 = DataTable(
     data=[{name+'cashflow': 100} for i in range(1,6)],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 tbl3 = DataTable(
@@ -91,17 +93,18 @@ tbl3 = DataTable(
     css=css_no_header,
     style_as_list_view=True,
     style_data=style_dark,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
-tbl1 = dbc.Col(tbl1, md=6)
-tbl2 = dbc.Col([ html.Div("Enter first-stage cash flows."), tbl2], md=6)
+tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=6, lg=6, className="mb-2")
+tbl2 = dbc.Col([ html.Div("Enter first-stage cash flows."), tbl2], xs=12, sm=6, md=6, lg=6, className="mb-2")
 # tbl3 = dbc.Col(tbl3, md=6)
 
 left = [
     html.Div("Enter number of periods in first stage."),
     Num,
     html.Br(),
-    dbc.Row([tbl1, tbl2], align="end"),
+    dbc.Row([tbl1, tbl2], align="end", className="gx-1"),
 ]
 
 middle = [
@@ -118,13 +121,13 @@ right = [
     tbl3
 ]
 
-left = dbc.Col(left, md=4)
-middle = dbc.Col(middle, md=4)
-right = dbc.Col(right, md=4)
+left = dbc.Col(left, xs=12, sm=12, md=4, lg=4, className="mb-2")
+middle = dbc.Col(middle, xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(right, xs=12, sm=12, md=4, lg=4, className="mb-2")
 
 
-row = dbc.Row([left, middle, right], align="top")
-body = html.Div(row)
+row = dbc.Row([left, middle, right], align="top", className="gx-1")
+body = dbc.Container(row, fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -33,6 +33,7 @@ tbl1 = DataTable(
     data=[{name+'date': i+1} for i in range(6)],
     style_header=style_header,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 tbl2 = DataTable(
@@ -41,6 +42,7 @@ tbl2 = DataTable(
     data=[{name+'cashflow': -100}] + [{name+'cashflow': 30} for i in range(5)],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 tbl3 = DataTable(
@@ -54,14 +56,15 @@ tbl3 = DataTable(
     style_header=style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 
 
-tbl1 = dbc.Col(tbl1, md=2)
-tbl2 = dbc.Col(tbl2, md=2)
-tbl3 = dbc.Col(tbl3, md=8)
-tables = dbc.Row([tbl1, tbl2, tbl3], align="top")
+tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=2, lg=2, className="mb-2")
+tbl2 = dbc.Col(tbl2, xs=12, sm=6, md=2, lg=2, className="mb-2")
+tbl3 = dbc.Col(tbl3, xs=12, sm=12, md=8, lg=8, className="mb-2")
+tables = dbc.Row([tbl1, tbl2, tbl3], align="top", className="gx-1")
 
 left = dbc.Col(
     [
@@ -71,7 +74,7 @@ left = dbc.Col(
         html.Br(),
         tables
     ],
-    md=6
+    xs=12, sm=12, md=6, lg=6, className="mb-2"
 )
 
 label = html.Div(['Internal rate of return:'])
@@ -80,10 +83,10 @@ IRR = dbc.Row([dbc.Col(label, md=6), dbc.Col(IRR, md=6)])
 
 graph = dcc.Graph(name + "fig")
 
-right = dbc.Col([IRR, html.Br(), graph], md=6)
+right = dbc.Col([IRR, html.Br(), graph], xs=12, sm=12, md=6, lg=6, className="mb-2")
 
-row = dbc.Row([left, right], align="top")
-body = html.Div(row)
+row = dbc.Row([left, right], align="top", className="gx-1")
+body = dbc.Container(row, fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
