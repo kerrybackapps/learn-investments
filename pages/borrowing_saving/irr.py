@@ -19,8 +19,8 @@ text = """
     there is a unique positive IRR and it is the discount rate at which the NPV switches from positive to
     negative.  For some sequences of cash flows, the IRR is undefined.  
 
-    Enter the number of periods.  If there are $r$ periods, there are $r+1$ dates.  Date 0 is the beginning of the
-    first period, date 1 is the end of the first period, ..., and date $r$ is the end of the $r$th period.  The
+    Enter the number of periods.  If there are $n$ periods, there are $n+1$ dates.  Date 0 is the beginning of the
+    first period, date 1 is the end of the first period, ..., and date $n$ is the end of the $n$th period.  The
     cash flows in the table below are editable. """
 
 name = "irr"
