@@ -56,7 +56,7 @@ fig = dcc.Graph(id=name + "fig")
 # Top row - inputs
 left  = dbc.Col(slider1, xs=12, sm=12, md=6, lg=6, xl=6)
 right = dbc.Col(slider2, xs=12, sm=12, md=6, lg=6, xl=6)
-row = dbc.Row([left, right], align='center', gutter=3)
+row = dbc.Row([left, right], align='center', className="g-3")
 
 body = dbc.Container(html.Div([row, html.Br(), fig]))
 

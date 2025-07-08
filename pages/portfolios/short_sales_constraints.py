@@ -140,12 +140,12 @@ graph = dcc.Graph(id=name + "fig")
 
 badge = html.H5(dbc.Badge("Results", className="ms-1"))
 badge = dbc.Col(badge, xs=12, sm=12, md=4, lg=4, xl=4, width={"offset": 5})
-badge = dbc.Row(badge, gutter=3)
+badge = dbc.Row(badge, className="g-3")
 
 left   = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=4, lg=4, xl=4)
 middle = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=4, lg=4, xl=4)
 right  = dbc.Col([slider7, slider8, slider9], xs=12, sm=12, md=4, lg=4, xl=4)
-row = dbc.Row([left, middle, right], align="center", gutter=3)
+row = dbc.Row([left, middle, right], align="center", className="g-3")
 
 col1 = dbc.Col(
     html.Div('Correlations are physically possible and assets are not linearly related?'),
@@ -155,7 +155,7 @@ col2 = dbc.Col(
     html.Div(id=name+'PDCov', style=text_style),
     xs=12, sm=12, md=2, lg=2, xl=2
 )
-row2 = dbc.Row([col1, col2], gutter=3)
+row2 = dbc.Row([col1, col2], className="g-3")
 
 body = dbc.Container(html.Div([row, html.Hr(),
                  row2, html.Hr(),

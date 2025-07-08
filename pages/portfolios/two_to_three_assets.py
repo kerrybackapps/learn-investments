@@ -124,11 +124,11 @@ graph = dcc.Loading(id=name + "loading", children=[graph], type="circle")
 left   = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=4, lg=4, xl=4)
 middle = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=4, lg=4, xl=4)
 right  = dbc.Col([slider7, slider8, slider9], xs=12, sm=12, md=4, lg=4, xl=4)
-row = dbc.Row([left, middle, right], align="center", gutter=3)
+row = dbc.Row([left, middle, right], align="center", className="g-3")
 
 col1 = dbc.Col(html.Div('Positive-definite Covariance Matrix?'), xs=12, sm=12, md=6, lg=6, xl=6, width={'offset': 2})
 col2 = dbc.Col(html.Div(id=name+'PDCov', style={'color': blue}), xs=12, sm=12, md=4, lg=4, xl=4)
-row2 = dbc.Row([col1, col2], gutter=3)
+row2 = dbc.Row([col1, col2], className="g-3")
 
 body = dbc.Container(html.Div([row, html.Br(),row2, html.Br(), graph]))
 
