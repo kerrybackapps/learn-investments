@@ -61,8 +61,8 @@ tbl3 = DataTable(
 
 
 
-tbl1 = dbc.Col(tbl1, xs=12, sm=4, md=2, lg=2, className="mb-2")
-tbl2 = dbc.Col(tbl2, xs=12, sm=8, md=4, lg=4, className="mb-2")
+tbl1 = dbc.Col(tbl1, xs=12, sm=6, md=2, lg=2, className="mb-2")
+tbl2 = dbc.Col(tbl2, xs=12, sm=6, md=4, lg=4, className="mb-2")
 tbl3 = dbc.Col(tbl3, xs=12, sm=12, md=6, lg=6, className="mb-2")
 tables = dbc.Row([tbl1, tbl2, tbl3], align="top", className="gx-1")
 
