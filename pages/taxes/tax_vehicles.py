@@ -89,9 +89,9 @@ slider6 = Slider(
 graph = dcc.Graph(id=name + "fig")
 
 # left = dbc.Col([slider5, slider1, slider2, slider3, slider4, slider6], md=4)
-left = dbc.Col([slider5, slider1, slider3, slider6], md=4)
-right = dbc.Col([graph], md=8)
-body = dbc.Row([left, right], align="center")
+left = dbc.Col([slider5, slider1, slider3, slider6], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col([graph], xs=12, sm=12, md=8, lg=8, className="mb-2")
+body = dbc.Container(dbc.Row([left, right], align="center", className="gx-1"), fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

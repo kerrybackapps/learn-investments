@@ -45,9 +45,9 @@ slider = dcc.RangeSlider(
 )
 slider = dbc.Col(
     [dbc.Label("Select date range", html_for=name + "slider"), slider],
-    width={"size": 6, "offset": 3},
+    xs=12, sm=8, md=6, lg=6, className="mb-2 offset-md-3",
 )
-slider = dbc.Row(slider)
+slider = dbc.Row(slider, className="gx-1")
 
 graph = dcc.Graph(id=name + "fig")
 
@@ -56,6 +56,7 @@ values = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
     columns=[dict(name="", id=name+"col1"),
              dict(name="% of Variance", id=name+"col2", type="numeric", format=percentage)
             ]
@@ -72,17 +73,18 @@ vectors = DataTable(
         }
     ],
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
     columns=[dict(name="Maturity/Shock", id=name+"maturity")] + [
              dict(name=str(i), id=name+str(i)) for i in range(1, 7)
             ]
 )
 
-values = dbc.Col(values, md=2)
-vectors = dbc.Col(vectors, md=5)
-graph = dbc.Col(graph, md=5)
-row2 = dbc.Row([values, vectors, graph], align="top")
+values = dbc.Col(values, xs=12, sm=12, md=2, lg=2, className="mb-2")
+vectors = dbc.Col(vectors, xs=12, sm=12, md=5, lg=5, className="mb-2")
+graph = dbc.Col(graph, xs=12, sm=12, md=5, lg=5, className="mb-2")
+row2 = dbc.Row([values, vectors, graph], align="top", className="gx-1")
 
-body = html.Div([slider, html.Br(), html.Hr(), row2])
+body = dbc.Container([slider, html.Br(), html.Hr(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

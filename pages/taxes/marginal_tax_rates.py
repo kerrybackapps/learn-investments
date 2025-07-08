@@ -72,14 +72,13 @@ effective = html.Div(id=name + "t_effective", style=text_style)
 effectiveLabel = dbc.Col(dbc.Label("Effective Rate", html_for=name + "t_effective"), xs=6)
 effective = dbc.Row([effectiveLabel, dbc.Col(effective, xs=6)])
 
-col1 = dbc.Col([label1, inpt1, html.Br(), radio], xs=6)
-# col1 = dbc.Col([slider, html.Br(), radio], xs=6)
-col2 = dbc.Col([tax_due, html.Br(), marginal,  html.Br(), effective], xs=6)
-row1 = dbc.Row([col1, col2])
+col1 = dbc.Col([label1, inpt1, html.Br(), radio], xs=12, sm=12, md=6, lg=6, className="mb-2")
+col2 = dbc.Col([tax_due, html.Br(), marginal,  html.Br(), effective], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([col1, col2], className="gx-1")
 
-row2 = dbc.Row(dbc.Col(graph, md=12), align="center")
+row2 = dbc.Row(dbc.Col(graph, xs=12, sm=12, md=12, lg=12, className="mb-2"), align="center", className="gx-1")
 
-body = html.Div([row1, row2])
+body = dbc.Container([row1, row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

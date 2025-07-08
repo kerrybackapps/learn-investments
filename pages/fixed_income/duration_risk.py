@@ -52,15 +52,15 @@ slider3 = Slider(
 graph = dcc.Graph(id=name + "fig")
 
 duration = html.Div(id=name + "duration", style=text_style)
-duration = dbc.Col(duration, md=6)
+duration = dbc.Col(duration, xs=12, sm=6, md=6, lg=6, className="mb-2")
 label = dbc.Label("Modified Duration", html_for=name + "duration")
-label = dbc.Col(label, md=6)
-row = dbc.Row([label, duration], align="center")
+label = dbc.Col(label, xs=12, sm=6, md=6, lg=6, className="mb-2")
+row = dbc.Row([label, duration], align="center", className="gx-1")
 
-left = dbc.Col([slider1, slider2, slider3, html.Br(), row], md=4)
-right = dbc.Col(graph, md=8)
-row = dbc.Row([left, right], align="top")
-body = html.Div(row)
+left = dbc.Col([slider1, slider2, slider3, html.Br(), row], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(graph, xs=12, sm=12, md=8, lg=8, className="mb-2")
+row = dbc.Row([left, right], align="top", className="gx-1")
+body = dbc.Container(row, fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

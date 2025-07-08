@@ -47,15 +47,16 @@ Bonds = DataTable(
         ],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 fig = dcc.Graph(id=name+"fig")
 
 label1 = dbc.Label("Enter number of bonds")
 label2 = dbc.Label("Enter bond data")
-left = dbc.Col([label1, Num, html.Br(), label2, Bonds], md=4)
-right = dbc.Col(fig, md=8)
-body = dbc.Row([left, right], align="top")
+left = dbc.Col([label1, Num, html.Br(), label2, Bonds], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(fig, xs=12, sm=12, md=8, lg=8, className="mb-2")
+body = dbc.Container(dbc.Row([left, right], align="top", className="gx-1"), fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

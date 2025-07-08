@@ -159,10 +159,10 @@ graph = dcc.Graph(id=name + "fig")
 
 
 # Option 2
-left = dbc.Col([slider1, slider2, slider3,], md=4)
-mid = dbc.Col([slider4, slider5, slider6], md=4)
-right = dbc.Col([slider7, slider8], md=4)
-row1 = dbc.Row([left, mid, right], align="top")
+left = dbc.Col([slider1, slider2, slider3,], xs=12, sm=12, md=4, lg=4, className="mb-2")
+mid = dbc.Col([slider4, slider5, slider6], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col([slider7, slider8], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row1 = dbc.Row([left, mid, right], align="top", className="gx-1")
 
 left = dbc.Col(
     [
@@ -176,11 +176,11 @@ left = dbc.Col(
         html.Br(),
         slider13,
     ],
-    md=4,
+    xs=12, sm=12, md=4, lg=4, className="mb-2",
 )
-right = dbc.Col([graph], md=8)
-row2 = dbc.Row([left, right], align="center")
-body = html.Div([row1, html.Br(), row2])
+right = dbc.Col([graph], xs=12, sm=12, md=8, lg=8, className="mb-2")
+row2 = dbc.Row([left, right], align="center", className="gx-1")
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 
 layout = Layout(

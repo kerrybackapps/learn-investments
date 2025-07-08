@@ -265,18 +265,18 @@ graph = dcc.Graph(id=name + "fig")
 # right1= dbc.Col([slider4,slider5,slider6,slider7], md=6)
 # row1  = dbc.Row([left1, right1])
 
-left2 = dbc.Col([slider9, slider10, slider11, slider12, slider13], md=4)
-mid2 = dbc.Col([slider14, slider15, slider16, slider17, slider18], md=4)
-right2 = dbc.Col([slider19, slider20, slider21, slider22, slider23], md=4)
-row2 = dbc.Row([left2, mid2, right2])
+left2 = dbc.Col([slider9, slider10, slider11, slider12, slider13], xs=12, sm=12, md=4, lg=4, className="mb-2")
+mid2 = dbc.Col([slider14, slider15, slider16, slider17, slider18], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right2 = dbc.Col([slider19, slider20, slider21, slider22, slider23], xs=12, sm=12, md=4, lg=4, className="mb-2")
+row2 = dbc.Row([left2, mid2, right2], className="gx-1")
 
 
 col = dbc.Col(
-    [slider1, slider2, slider3, slider4, slider5, slider6, slider7, slider8], md=4
+    [slider1, slider2, slider3, slider4, slider5, slider6, slider7, slider8], xs=12, sm=12, md=4, lg=4, className="mb-2"
 )
-row3 = dbc.Row([col, dbc.Col(graph, md=8)], align="center")
+row3 = dbc.Row([col, dbc.Col(graph, xs=12, sm=12, md=8, lg=8, className="mb-2")], align="center", className="gx-1")
 
-body = html.Div([row2, html.Br(), row3, html.Br()])  # , row1,html.Br()])
+body = dbc.Container([row2, html.Br(), row3, html.Br()], fluid=True, className="px-1")  # , row1,html.Br()])
 
 
 layout = Layout(

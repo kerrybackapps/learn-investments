@@ -53,6 +53,7 @@ Params = DataTable(
             'backgroundColor': lightblue,
         },
     ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 Bonds = DataTable(
@@ -72,6 +73,7 @@ Bonds = DataTable(
         ],
     style_header=style_header,
     style_data=style_editable,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 rateTree = dcc.Graph(id=name+"ratetree")
@@ -81,15 +83,15 @@ label2 = dbc.Label("Enter bond data")
 left = dbc.Col([
     label1,
     Params
-    ], md=3
+    ], xs=12, sm=12, md=3, lg=3, className="mb-2"
 )
 
-mid = dbc.Col([label2, Bonds], md=3)
-right = dbc.Col(rateTree, md=6)
-toprow = dbc.Row([left, mid, right], align="top")
+mid = dbc.Col([label2, Bonds], xs=12, sm=12, md=3, lg=3, className="mb-2")
+right = dbc.Col(rateTree, xs=12, sm=12, md=6, lg=6, className="mb-2")
+toprow = dbc.Row([left, mid, right], align="top", className="gx-1")
 
 badge = mybadge("Calculating Option-Adjusted Spread")
-badge = dbc.Col(badge, width={"size": 2, "offset": 5})
+badge = dbc.Col(badge, width={"size": 2}, className="offset-md-5")
 badge = dbc.Row(badge)
 
 text2 = """
@@ -132,6 +134,7 @@ OASParams = DataTable(
             'backgroundColor': lightblue,
         },
     ],
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 
@@ -142,19 +145,19 @@ OptionTree = dcc.Graph(name+"optiontree")
 OAStext = html.Div("Option-adjusted spread")
 OASresult = html.Div(id=name+"oas", style=text_style)
 
-col1 = dbc.Col(OAStext, md=6)
-col2 = dbc.Col(OASresult, md=6)
-row = dbc.Row([col1, col2])
-col1 = dbc.Col(text2, md=8)
-col2 = dbc.Col([OASParams, html.Br(), row], md=4)
-midrow = dbc.Row([col1, col2], align="center")
+col1 = dbc.Col(OAStext, xs=12, sm=6, md=6, lg=6, className="mb-2")
+col2 = dbc.Col(OASresult, xs=12, sm=6, md=6, lg=6, className="mb-2")
+row = dbc.Row([col1, col2], className="gx-1")
+col1 = dbc.Col(text2, xs=12, sm=12, md=8, lg=8, className="mb-2")
+col2 = dbc.Col([OASParams, html.Br(), row], xs=12, sm=12, md=4, lg=4, className="mb-2")
+midrow = dbc.Row([col1, col2], align="center", className="gx-1")
 
-cola = dbc.Col(OASTree, md=4)
-colb = dbc.Col(BondTree, md=4)
-colc = dbc.Col(OptionTree, md=4)
-bottomrow = dbc.Row([cola, colb, colc], align="top")
+cola = dbc.Col(OASTree, xs=12, sm=12, md=4, lg=4, className="mb-2")
+colb = dbc.Col(BondTree, xs=12, sm=12, md=4, lg=4, className="mb-2")
+colc = dbc.Col(OptionTree, xs=12, sm=12, md=4, lg=4, className="mb-2")
+bottomrow = dbc.Row([cola, colb, colc], align="top", className="gx-1")
 
-body = html.Div([toprow, html.Hr(), badge, html.Br(), midrow, html.Hr(), bottomrow])
+body = dbc.Container([toprow, html.Hr(), badge, html.Br(), midrow, html.Hr(), bottomrow], fluid=True, className="px-1")
 layout = Layout(
     title=title,
     runtitle=runtitle,

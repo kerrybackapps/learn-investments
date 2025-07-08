@@ -38,9 +38,9 @@ slider = dcc.RangeSlider(
 )
 slider = dbc.Col(
     [dbc.Label("Select date range", html_for=name + "slider"), slider],
-    width={"size": 6, "offset": 3},
+    xs=12, sm=8, md=6, lg=6, className="mb-2 offset-md-3",
 )
-slider = dbc.Row(slider)
+slider = dbc.Row(slider, className="gx-1")
 
 lbl1 = dbc.Label("Means and Standard Deviations")
 tbl1 = DataTable(
@@ -57,6 +57,7 @@ tbl1 = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 columns = ["", "1-Year", "2-Year", "3-Year", "5-Year", "10-Year", "30-Year"]
@@ -69,17 +70,19 @@ tbl2 = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 
 body = dbc.Row(
     dbc.Col(
         [lbl1, tbl1, html.Br(), lbl2, tbl2],
-        width={'size': 10, 'offset': 1}
-    )
+        xs=12, sm=12, md=10, lg=10, className="mb-2 offset-md-1"
+    ),
+    className="gx-1"
 )
 
-body = html.Div([slider, html.Br(), html.Hr(), body])
+body = dbc.Container([slider, html.Br(), html.Hr(), body], fluid=True, className="px-1")
 layout = Layout(
     title=title,
     runtitle=runtitle,
