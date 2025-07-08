@@ -89,6 +89,7 @@ tbl = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 yld = html.Div(id=name + "yield", style={"color": blue})
@@ -98,22 +99,22 @@ label1 = dbc.Label("Yield", html_for=name + "yield")
 label2 = dbc.Label("Dirty Price", html_for=name + "dirty")
 row = dbc.Row(
     [
-        dbc.Col(label2, md=3),
-        dbc.Col(dirty, md=3),
-        dbc.Col(label1, md=3),
-        dbc.Col(yld, md=3),
-    ]
+        dbc.Col(label2, xs=12, sm=6, md=3, lg=3, className="mb-2"),
+        dbc.Col(dirty, xs=12, sm=6, md=3, lg=3, className="mb-2"),
+        dbc.Col(label1, xs=12, sm=6, md=3, lg=3, className="mb-2"),
+        dbc.Col(yld, xs=12, sm=6, md=3, lg=3, className="mb-2"),
+    ], className="gx-1"
 )
 
-left = dbc.Col([slider1, slider2, slider3], md=6)
-right = dbc.Col([slider4, html.Br(), row], md=6)
-row1 = dbc.Row([left, right], align="center")
+left = dbc.Col([slider1, slider2, slider3], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([slider4, html.Br(), row], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([left, right], align="center", className="gx-1")
 
-left = dbc.Col(graph, md=6)
-right = dbc.Col(tbl, md=6)
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(tbl, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

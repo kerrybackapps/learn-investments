@@ -78,22 +78,23 @@ tbl = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 macaulay = html.Div(id=name + "macaulay", style=text_style)
 label1 = dbc.Label("Macaulay Duration", html_for=name + "macaulay")
-macaulay = dbc.Col([label1, macaulay], md=6)
+macaulay = dbc.Col([label1, macaulay], xs=12, sm=6, md=6, lg=6, className="mb-2")
 
 modified = html.Div(id=name + "modified", style=text_style)
 label2 = dbc.Label("Modified Duration", html_for=name + "modified")
-modified = dbc.Col([label2, modified], md=6)
-row = dbc.Row([macaulay, modified], align="center")
+modified = dbc.Col([label2, modified], xs=12, sm=6, md=6, lg=6, className="mb-2")
+row = dbc.Row([macaulay, modified], align="center", className="gx-1")
 
-left = dbc.Col([slider1, slider2], md=6)
-right = dbc.Col([slider3, html.Br(), row])
-row = dbc.Row([left, right], align="top")
+left = dbc.Col([slider1, slider2], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([slider3, html.Br(), row], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row, html.Br(), tbl])
+body = dbc.Container([row, html.Br(), tbl], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

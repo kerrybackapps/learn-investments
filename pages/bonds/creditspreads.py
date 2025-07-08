@@ -15,10 +15,10 @@ text = """This page presents option-adjusted spreads of the ICE BofA U.S. corpor
 
 name = "creditspreads"
 
-body = html.Div([
+body = dbc.Container([
     dcc.Loading(dcc.Graph(id=name + "fig"), type="circle"),
     dbc.Button(id=name+'invisible btn', style={'display':'none'})
-    ])
+    ], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

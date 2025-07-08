@@ -51,15 +51,15 @@ slider4 = Slider(
     name=inputs[3],
 )
 
-left = dbc.Col([slider1, slider2], md=6)
-right = dbc.Col([slider3, slider4], md=6)
-row1 = dbc.Row([left, right], align="top")
+left = dbc.Col([slider1, slider2], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([slider3, slider4], xs=12, sm=12, md=6, lg=6, className="mb-2")
+row1 = dbc.Row([left, right], align="top", className="gx-1")
 
-graph1 = dbc.Col(dcc.Graph(id=name + "fig1"), md=6)
-graph2 = dbc.Col(dcc.Graph(id=name + "fig2"), md=6)
-row2 = dbc.Row([graph1, graph2], align="center")
+graph1 = dbc.Col(dcc.Graph(id=name + "fig1"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+graph2 = dbc.Col(dcc.Graph(id=name + "fig2"), xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([graph1, graph2], align="center", className="gx-1")
 
-body = html.Div([row1, html.Br(), row2])
+body = dbc.Container([row1, html.Br(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

@@ -79,30 +79,31 @@ tbl = DataTable(
     style_header=style_header,
     style_data_conditional=style_data_conditional,
     style_as_list_view=True,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
 
 yld = html.Div(id=name+"yld", style=text_style)
 price = html.Div(id=name+"price", style=text_style)
 
-left = dbc.Col([slider1, slider2], md=6)
-right = dbc.Col([slider3, slider4], md=6)
-sliders = dbc.Row([left, right])
-sliders = dbc.Col(sliders, md=8)
+left = dbc.Col([slider1, slider2], xs=12, sm=6, md=6, lg=6, className="mb-2")
+right = dbc.Col([slider3, slider4], xs=12, sm=6, md=6, lg=6, className="mb-2")
+sliders = dbc.Row([left, right], className="gx-1")
+sliders = dbc.Col(sliders, xs=12, sm=12, md=8, lg=8, className="mb-2")
 
-radio = dbc.Col(radio, md=6)
-output1 = dbc.Row([dbc.Col(html.Div('Yield:'), md=6), dbc.Col(yld, md=6)])
-output2 = dbc.Row([dbc.Col(html.Div('Price:'), md=6), dbc.Col(price, md=6)])
-outputs = dbc.Col([output1, output2], md=6)
-other = dbc.Row([radio, outputs], align='center')
-other = dbc.Col(other, md=4)
+radio = dbc.Col(radio, xs=12, sm=12, md=6, lg=6, className="mb-2")
+output1 = dbc.Row([dbc.Col(html.Div('Yield:'), xs=6, sm=6, md=6, lg=6), dbc.Col(yld, xs=6, sm=6, md=6, lg=6)])
+output2 = dbc.Row([dbc.Col(html.Div('Price:'), xs=6, sm=6, md=6, lg=6), dbc.Col(price, xs=6, sm=6, md=6, lg=6)])
+outputs = dbc.Col([output1, output2], xs=12, sm=12, md=6, lg=6, className="mb-2")
+other = dbc.Row([radio, outputs], align='center', className="gx-1")
+other = dbc.Col(other, xs=12, sm=12, md=4, lg=4, className="mb-2")
 
-row1 = dbc.Row([sliders, other], align='center')
+row1 = dbc.Row([sliders, other], align='center', className="gx-1")
 
-left = dbc.Col(graph, md=6)
-right = dbc.Col(tbl, md=6)
-row2 = dbc.Row([left, right], align="top")
+left = dbc.Col(graph, xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col(tbl, xs=12, sm=12, md=6, lg=6, className="mb-2")
+row2 = dbc.Row([left, right], align="top", className="gx-1")
 
-body = html.Div([row1, html.Hr(), row2])
+body = dbc.Container([row1, html.Hr(), row2], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

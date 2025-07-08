@@ -25,9 +25,10 @@ name = "termstructure"
 graph = dcc.Loading(
     id=name + "loading", children=[dcc.Graph(id=name+"fig")], type="circle"
 )
-body = html.Div([
+body = dbc.Container([
     graph,
-dbc.Button(id=name+'invisible btn', style={'display':'none'})]
+    dbc.Button(id=name+'invisible btn', style={'display':'none'})
+], fluid=True, className="px-1"
 )
 layout = Layout(
     title=title,
