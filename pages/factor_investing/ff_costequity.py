@@ -31,7 +31,7 @@ text = """ The Fama-French factors and the monthly risk-free rate are downloaded
 name = "ff-costequity"
 
 inpt = myinput(id=name + "ticker", placeholder="Enter a ticker")
-inpt = dbc.Col(inpt, width={"size": 2, "offset": 5})
+inpt = dbc.Col(inpt, width={"size": 2}, className="offset-md-5")
 inpt = dbc.Row(inpt)
 
 columns = ["Factor", "Factor Risk Premium", "Beta", "Risk Premium"]
@@ -42,11 +42,12 @@ tbl = DataTable(
     style_header=style_header,
     style_as_list_view=True,
     style_data_conditional=style_data_conditional,
+    style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'}
 )
-tbl = dbc.Col(tbl, width={"size": 8, "offset": 2})
+tbl = dbc.Col(tbl, width={"size": 8}, className="offset-md-2")
 tbl = dcc.Loading(id=name + "loading", children=[tbl], type="circle")
 
-body = html.Div([inpt, html.Br(), html.Br(), tbl])
+body = dbc.Container([inpt, html.Br(), html.Br(), tbl], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

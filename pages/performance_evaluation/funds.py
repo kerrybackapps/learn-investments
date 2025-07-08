@@ -79,12 +79,12 @@ drop = dcc.Dropdown(
     style={"backgroundColor": lightblue}
 )
 
-left = dbc.Col([html.Label('Ticker to Analyze'), inpt], md=4)
-mid = dbc.Col([html.Label('Benchmark'), drop], md=4)
-right = dbc.Col(slider, md=4)
-row = dbc.Row([left, mid, right], align='center')
+left = dbc.Col([html.Label('Ticker to Analyze'), inpt], xs=12, sm=12, md=4, lg=4, className="mb-2")
+mid = dbc.Col([html.Label('Benchmark'), drop], xs=12, sm=12, md=4, lg=4, className="mb-2")
+right = dbc.Col(slider, xs=12, sm=12, md=4, lg=4, className="mb-2")
+row = dbc.Row([left, mid, right], align='center', className="gx-1")
 
-body = html.Div([row, html.Br(),
+body = dbc.Container([row, html.Br(),
     dcc.Tabs(
         id=name+'tab',
         value=name+'simple',
@@ -98,7 +98,7 @@ body = html.Div([row, html.Br(),
     html.Br(),
     html.Hr(),
     dcc.Loading(html.Div(id=name+'content'), id=name+'loading', type='circle')
-])
+], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,
