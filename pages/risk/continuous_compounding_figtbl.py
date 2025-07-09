@@ -57,7 +57,7 @@ def figtbl(name, dates, radio, ticker=None):
         y=df.log,
         text=df.date,
         mode="markers",
-        hovertemplate="%{text}<br>Return=%{x:.2%}<br>CC Return=%{y:.2%}<extra></extra>"
+        hovertemplate="%{text}<br>Return=%{x:.2%}<br>Cont. Comp. Return=%{y:.2%}<extra></extra>"
     )
     fig1 = go.Figure(trace)
     # fig1.layout.xaxis['title'] = 'Return'
@@ -65,7 +65,7 @@ def figtbl(name, dates, radio, ticker=None):
     fig1.update_xaxes(tickformat=".0%", title="Return")
     fig1.update_yaxes(tickformat=".0%", title=f"Continuously Compounded {tick} Return")
 
-    fig2 = ff.create_distplot([df.ret, df.log], group_labels=["Return", "CC Return"], show_rug=False, show_hist=False)
+    fig2 = ff.create_distplot([df.ret, df.log], group_labels=["Return", "Cont. Comp. Return"], show_rug=False, show_hist=False)
     fig2.update_yaxes(tickvals=[])
     fig2.update_xaxes(tickformat=".0%", title="")
     fig2.update_traces(hovertemplate="<extra></extra>")
@@ -73,8 +73,8 @@ def figtbl(name, dates, radio, ticker=None):
         legend=dict(
             yanchor="top",
             y=0.99,
-            xanchor="left",
-            x=0.01
+            xanchor="right",
+            x=0.99
         )
     )
 

@@ -184,8 +184,8 @@ slider12 = Slider(
 
 
 ########## OUTPUTS
-fig1 = dcc.Graph(id=name + "fig1")
-fig2 = dcc.Graph(id=name + "fig2")
+fig1 = dcc.Graph(id=name + "fig1", style={'height': '420px'})
+fig2 = dcc.Graph(id=name + "fig2", style={'height': '420px'})
 
 ########## PAGE LAYOUT
 # Top row - inputs
@@ -210,11 +210,11 @@ alloc = html.Div(id=name + "alloc", style=text_style)
 alloc = dbc.Col(alloc, xs=12, sm=12, md=5, lg=5, className="mb-2")
 alloc = dbc.Row([label, alloc], className="gx-1")
 
-fig1 = dbc.Col([alloc, fig1], xs=12, sm=12, md=8, lg=8, className="mb-2")
+fig1 = dbc.Col(fig1, xs=12, sm=12, md=8, lg=8, className="mb-2")
 fig2 = dbc.Col(fig2, xs=12, sm=12, md=4, lg=4, className="mb-2")
 row3 = dbc.Row([fig1, fig2], align="top", className="gx-1")
 # Combine rows
-body = dbc.Container([row1, html.Hr(), row2, html.Hr(), row3], fluid=True, className="px-1")
+body = dbc.Container([row1, html.Hr(), row2, html.Hr(), alloc,row3], fluid=True, className="px-1")
 
 layout = Layout(
     title=title,

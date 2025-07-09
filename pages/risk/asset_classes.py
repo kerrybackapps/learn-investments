@@ -91,8 +91,7 @@ Tickers = DataTable(
 Tickers = dcc.Loading(Tickers, type="circle")
 
 text1 = """
-    This page may time out if there is a 
-    delay in retrieving data from Yahoo.  If that happens, click here to try running again.
+    Run
     """
 Btn = dbc.Button(
     text1,

@@ -73,6 +73,6 @@ def figtbl(name, N, rows):
     fig.update_layout(xaxis_tickformat=".0%")
 
     # Make figure with better proportions
-    fig.update_layout(height=450)
-    return tbl1, rows, tbl3, string, smallfig(fig)
+    # fig.update_layout(height=450)
+    return tbl1, rows, tbl3, string, largefig(fig)
 

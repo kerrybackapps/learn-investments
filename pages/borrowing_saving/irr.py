@@ -68,25 +68,25 @@ tables = dbc.Row([tbl1, tbl2, tbl3], align="top", className="gx-1")
 
 left = dbc.Col(
     [
-        html.Div("Enter integer number of periods"),
+        html.Div("Enter number of periods"),
         Num,
         html.Br(),
         html.Br(),
         tables
     ],
-    xs=12, sm=12, md=6, lg=6, className="mb-2"
+    xs=12, sm=12, md=7, lg=7, className="mb-2"
 )
 
 label = html.Div(['Internal rate of return:'])
 IRR= html.Div(id=name + "irr", style=text_style)
-IRR = dbc.Row([dbc.Col(label, md=6), dbc.Col(IRR, md=6)])
+IRR = dbc.Row([dbc.Col(label, md=5), dbc.Col(IRR, md=7)])
 
-graph = dcc.Graph(name + "fig")
+graph = dcc.Graph(name + "fig", style={'height': '320px'})
 
-right = dbc.Col([IRR, html.Br(), graph], xs=12, sm=12, md=6, lg=6, className="mb-2")
+right = dbc.Col([IRR, html.Br(), graph], xs=12, sm=12, md=5, lg=5, className="mb-2")
 
 row = dbc.Row([left, right], align="top", className="gx-1")
-body = dbc.Container(row, fluid=True, className="px-1")
+body = dbc.Container(row, className="px-1")
 
 layout = Layout(
     title=title,

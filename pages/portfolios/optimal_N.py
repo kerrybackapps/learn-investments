@@ -131,7 +131,7 @@ tbl = DataTable(
     style_table={'overflowX': 'auto', 'width': '100%', 'maxWidth': '100%'},
 )
 
-graph = dcc.Graph(id=name + "fig")
+graph = dcc.Graph(id=name + "fig", style={'height': '400px'})
 
 slider1 = dbc.Col(slider1, xs=12, sm=12, md=4, lg=4, className="mb-2")
 slider2 = dbc.Col(slider2, xs=12, sm=12, md=4, lg=4, className="mb-2")
