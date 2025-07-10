@@ -92,7 +92,8 @@ def figtbl(char, dates):
         index=df.columns,
         columns=factors + ['alpha', 'tstat', 'empirical', 'theoretical']
     )
-
+    print(df.head())
+    print(ff.head())
     df = df.join(ff).dropna()
 
     for port in regr.index:
