@@ -342,9 +342,11 @@ pagesPython = linksPython.page.to_list()
 linksPython = linksPython.set_index('page').to_dict()['link']
 
 small_wds = "a at of and or with for on".split()
-large_wds = "CAPM French Two-Way".split()
+large_wds = "CAPM Fama-French Two-Way Put-Call Black-Scholes Forward-Curve".split()
 def mycap(s):
     s = s.split()
+    s = ["Two-Way" if x in ["two-way", "Two-way"] else x for x in s]
+    s = ["Put-Call" if x in ["put-call", "Put-call"] else x for x in s]
     s = [x if x in small_wds + large_wds else x.capitalize() for x in s]
     return ' '.join(s)
 
