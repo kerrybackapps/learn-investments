@@ -83,31 +83,30 @@ def figtbl(char, dates):
 
     splits = [splitName(x) for x in df.columns]
 
+    # 5x5 table calculations
     df.columns = pd.MultiIndex.from_tuples(splits)
 
     # multi-indexed index, for unstacking
     factors = ['Mkt-RF', 'SMB', 'HML', 'RMW', 'CMA']
-    regr = pd.DataFrame(
-        dtype=float,
-        index=df.columns,
-        columns=factors + ['alpha', 'tstat', 'empirical', 'theoretical']
-    )
-    print(df.head())
-    print(ff.head())
-    df = df.join(ff).dropna()
+    regr = pd.DataFrame(dtype=float, 
+                        index=df.columns, 
+                        columns=factors + ['alpha', 'tstat', 'empirical', 'theoretical'])
+    # df = df.join(ff).dropna()
 
     for port in regr.index:
-        result = sm.OLS(df[port], sm.add_constant(df[factors])).fit()
+        subdf = pd.DataFrame(df[port])
+        subdf.columns=['ret']
+        subdf=subdf.join(ff).dropna()
+        result = sm.OLS(subdf['ret'], sm.add_constant(subdf[factors])).fit()
         regr.loc[port, factors] = result.params[factors]
         regr.loc[port, 'alpha'] = 12 * result.params['const']
         regr.loc[port, 'tstat'] = result.tvalues['const']
-        regr.loc[port, 'empirical'] = 12 * df[port].mean()
-        regr.loc[port, 'theoretical'] = 12 * result.params[factors] @ df[factors].mean()
+        regr.loc[port, 'empirical'] = 12 * subdf['ret'].mean()
+        regr.loc[port, 'theoretical'] = 12 * result.params[factors] @ subdf[factors].mean()
 
     regr['port'] = splits
 
     # 5 x 5 tables
-
     alpha_tbl = regr.alpha.unstack()
     tstat_tbl = regr.tstat.unstack()
 

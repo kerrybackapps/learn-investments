@@ -1,8 +1,10 @@
 from dash import dcc, html, Output, Input, callback
 import dash_bootstrap_components as dbc
-from pages.portfolios.three_assets_figtbl import figtbl
 from pages.formatting import Slider, Layout, text_style, mybadge
 import numpy_financial as npf
+
+def myinput(id, value=None, placeholder=""):
+    return dbc.Input(id=id, type="numeric", placeholder=placeholder, value=value, style={"backgroundColor": "#e6f3ff"})
 
 title = "Amortization"
 runtitle = "Amortization"
@@ -88,25 +90,61 @@ slider0 = Slider(
 )
 
 # Input components
-slider11 = Slider(**Rate_Slider_Arg, name=inputs[0])
-slider21 = Slider(**Rate_Slider_Arg, name=inputs[1])
-slider31 = Slider(**Rate_Slider_Arg, name=inputs[2])
-slider41 = Slider(**Principal_Slider_Arg, name=inputs[3])
+input11 = html.Div([
+    dbc.Label("Annual Rate (%)"),
+    myinput(id=inputs[0], value=4.5)
+])
+input21 = html.Div([
+    dbc.Label("Annual Rate (%)"), 
+    myinput(id=inputs[1], value=4.5)
+])
+input31 = html.Div([
+    dbc.Label("Annual Rate (%)"),
+    myinput(id=inputs[2], value=4.5)
+])
+input41 = html.Div([
+    dbc.Label("Principal ($)"),
+    myinput(id=inputs[3], value=400000)
+])
 
-slider12 = Slider(**Principal_Slider_Arg, name=inputs[4])
-slider22 = Slider(**Payment_Slider_Arg, name=inputs[5])
-slider32 = Slider(**Principal_Slider_Arg, name=inputs[6])
-slider42 = Slider(**Payment_Slider_Arg, name=inputs[7])
+input12 = html.Div([
+    dbc.Label("Principal ($)"),
+    myinput(id=inputs[4], value=400000)
+])
+input22 = html.Div([
+    dbc.Label("Payment ($)"),
+    myinput(id=inputs[5], value=3000)
+])
+input32 = html.Div([
+    dbc.Label("Principal ($)"),
+    myinput(id=inputs[6], value=400000)
+])
+input42 = html.Div([
+    dbc.Label("Payment ($)"),
+    myinput(id=inputs[7], value=3000)
+])
 
-slider13 = Slider(**Balloon_Slider_Arg, name=inputs[8])
-slider23 = Slider(**Balloon_Slider_Arg, name=inputs[9])
-slider33 = Slider(**Payment_Slider_Arg, name=inputs[10])
-slider43 = Slider(**Balloon_Slider_Arg, name=inputs[11])
+input13 = html.Div([
+    dbc.Label("Balloon ($)"),
+    myinput(id=inputs[8], value=0)
+])
+input23 = html.Div([
+    dbc.Label("Balloon ($)"),
+    myinput(id=inputs[9], value=0)
+])
+input33 = html.Div([
+    dbc.Label("Payment ($)"),
+    myinput(id=inputs[10], value=3000)
+])
+input43 = html.Div([
+    dbc.Label("Balloon ($)"),
+    myinput(id=inputs[11], value=0)
+])
 
-paymentSliders = [slider11, slider12, slider13]
-principalSliders = [slider21, slider22, slider23]
-balloonSliders = [slider31, slider32, slider33]
-rateSliders = [slider41, slider42, slider43]
+paymentInputs = [input11, input12, input13]
+principalInputs = [input21, input22, input23]
+balloonInputs = [input31, input32, input33]
+rateInputs = [input41, input42, input43]
 
 # Outputs components
 payment = html.Div(id=name + "payment", style=text_style)
@@ -125,16 +163,16 @@ balloon = dbc.Row([balloonLabel, dbc.Col(balloon, md=6)])
 rate = dbc.Row([rateLabel, dbc.Col(rate, md=6)])
 
 left = dbc.Col([slider0], md=6)
-middle = dbc.Col(label, width=dict(size=2), className="offset-md-1")
+middle = dbc.Col(label, width=dict(size=2, offset=1))
 right = dbc.Col([radio0], md=3)
 
 header = dbc.Row([left, middle, right], align="center")
 
 paymentCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Payment"), width=dict(size=4), className="offset-md-4")),
+        dbc.Row(dbc.Col(mybadge("Payment"), width=dict(size=4, offset=4))),
         html.Br(),
-        *paymentSliders,
+        *paymentInputs,
         html.Br(),
         payment
     ],
@@ -142,9 +180,9 @@ paymentCol = dbc.Col(
 )
 principalCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Principal"), width=dict(size=4), className="offset-md-4")),
+        dbc.Row(dbc.Col(mybadge("Principal"), width=dict(size=4, offset=4))),
         html.Br(),
-        *principalSliders,
+        *principalInputs,
         html.Br(),
         principal
     ],
@@ -153,9 +191,9 @@ principalCol = dbc.Col(
 
 balloonCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Balloon"), width=dict(size=4), className="offset-md-4")),
+        dbc.Row(dbc.Col(mybadge("Balloon"), width=dict(size=4, offset=4))),
         html.Br(),
-        *balloonSliders,
+        *balloonInputs,
         html.Br(),
         balloon
     ],
@@ -164,9 +202,9 @@ balloonCol = dbc.Col(
 
 rateCol = dbc.Col(
     [
-        dbc.Row(dbc.Col(mybadge("Rate"), width=dict(size=4), className="offset-md-4")),
+        dbc.Row(dbc.Col(mybadge("Rate"), width=dict(size=4, offset=4))),
         html.Br(),
-        *rateSliders,
+        *rateInputs,
         html.Br(),
         rate
     ],
@@ -186,11 +224,11 @@ layout = Layout(
     body=body,
 )
 
-outputs = [Output(i, "children") for i in outputs]
-inputs = [Input(name + "termtype", "value"), Input(name + "term", "value")] + [
+callback_outputs = [Output(i, "children") for i in outputs]
+callback_inputs = [Input(name + "termtype", "value"), Input(name + "term", "value")] + [
     Input(i, "value") for i in inputs
 ]
-lst = outputs + inputs
+lst = callback_outputs + callback_inputs
 
 
 @callback(*lst)
@@ -199,6 +237,20 @@ def call(*args):
 
 
 def figtbl(termtype, term, a11, a21, a31, a41, a12, a22, a32, a42, a13, a23, a33, a43):
+
+    # Convert strings to floats and handle None values
+    a11 = float(a11) if a11 else 0
+    a21 = float(a21) if a21 else 0
+    a31 = float(a31) if a31 else 0
+    a41 = float(a41) if a41 else 0
+    a12 = float(a12) if a12 else 0
+    a22 = float(a22) if a22 else 0
+    a32 = float(a32) if a32 else 0
+    a42 = float(a42) if a42 else 0
+    a13 = float(a13) if a13 else 0
+    a23 = float(a23) if a23 else 0
+    a33 = float(a33) if a33 else 0
+    a43 = float(a43) if a43 else 0
 
     # Change the rate to decimal representation
     a11 /= 100
