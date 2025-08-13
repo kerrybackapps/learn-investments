@@ -18,17 +18,17 @@ chapter_url = "futures-options"
 urls = None
 text = """
     Black and Scholes assumed that the natural logarithm of the underlying asset price at the option maturity is
-    normally distributed with standard deviation equal to $\sigma\sqrt{T}$, where $\sigma$ is called the volatility
+    normally distributed with standard deviation equal to $\\sigma\\sqrt{T}$, where $\\sigma$ is called the volatility
     and $T$ is the number of years to maturity of the option.  The Black-Scholes formula
     can be derived by assuming the stock earns the risk-free rate on
     average and discounting the expected option value at maturity at the risk-free rate.  This page estimates the expected
     values at maturity by simulation.  10,000 values of the underlying 
     asset price $S_T$ at the option maturity are simulated as the exponential of
-    $\log S_T = \log S_0 + (r-q-0.5\sigma^2)T + \sigma\sqrt{T}\epsilon$, 
-    where $\epsilon$ is a simulated standard normal random variable, and $r$ is the interest rate, $q$ is the dividend
-    yield, $\sigma$ is the volatility, $T$ is the time to maturity, and $S_0$ is the initial underlying asset 
+    $\\log S_T = \\log S_0 + (r-q-0.5\\sigma^2)T + \\sigma\\sqrt{T}\\epsilon$, 
+    where $\\epsilon$ is a simulated standard normal random variable, and $r$ is the interest rate, $q$ is the dividend
+    yield, $\\sigma$ is the volatility, $T$ is the time to maturity, and $S_0$ is the initial underlying asset 
     price.  The figure on the left shows a histogram of the simulated prices.  In each simulation, the call value 
-    $\max(0, S_T-K)$ and put value $\max(0, K-S_T)$ are calculated.  The histograms of in-the-money values of the
+    $\\max(0, S_T-K)$ and put value $\\max(0, K-S_T)$ are calculated.  The histograms of in-the-money values of the
     call and put are shown
     in the other two figures.  The discounted average values approximate the Black-Scholes formula, and the approximation
     would be better if a larger number of values were simulated.  

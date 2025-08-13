@@ -28,7 +28,7 @@ text = """
     bond with face value of 100 maturing at the end of 
     a single period is $100 / (1+r/n)$ where $n$ is the number of periods in
     a year.  The change in the annualized short rate from one period to the next is assumed to be 
-    $a_t \pm \sigma\sqrt{\\Delta t}$ where $\sigma$ is the volatility that is input, $\\Delta t = 1/n$ is the length
+    $a_t \\pm \\sigma\\sqrt{\\Delta t}$ where $\\sigma$ is the volatility that is input, $\\Delta t = 1/n$ is the length
     of a period in years, and $a_t$ is a number determined by
     the bond data that is input.  The bond data is used to compute spot and forward rates as on the Spot and Forward
     Rates page, except that here the compounding frequency for spot and forward rates is the number of periods in a

@@ -13,11 +13,11 @@ text = """
         Call and put Greeks for European options are calculated from the Black-Scholes formulas and plotted as functions 
         of the underlying asset price.  The Greeks are (calculus) derivatives of the values with respect to the formula
         inputs, so they tell us the rate at which the values change when the inputs 
-        change.  Let $y=f(s,K,\sigma,r,q,T)$ denote a call or put value as a function of the underlying
-        asset price $S$, the strike price $K$, the volatility $\sigma$, the interest rate $r$, the dividend
-        yield $q$, and the time to maturity $T$.  The Greeks are delta $= \partial y/\partial S$, 
-        vega $= \partial y/\partial \sigma$, gamma $= \partial^2 y/\partial S^2$, theta $= -\partial y/\partial T$,
-        and rho $= \partial y/\partial r$.  The vega is the same for a call as for a put, and the same is true for
+        change.  Let $y=f(s,K,\\sigma,r,q,T)$ denote a call or put value as a function of the underlying
+        asset price $S$, the strike price $K$, the volatility $\\sigma$, the interest rate $r$, the dividend
+        yield $q$, and the time to maturity $T$.  The Greeks are delta $= \\partial y/\\partial S$, 
+        vega $= \\partial y/\\partial \\sigma$, gamma $= \\partial^2 y/\\partial S^2$, theta $= -\\partial y/\\partial T$,
+        and rho $= \\partial y/\\partial r$.  The vega is the same for a call as for a put, and the same is true for
         the gamma.  Also, a call delta equals a put delta plus $e^{-qT}$.  These facts all follow from put-call 
         parity: call price - put price $$= e^{-qT}S - e^{-rT}K$$.
         """

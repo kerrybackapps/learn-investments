@@ -23,7 +23,7 @@ text = """
     specified number of periods. The arithmetic and geometric averages of the simulated returns 
     are reported in the left panel along with the standard deviation.   The
     left figure shows the simulated returns, and the right figure shows the accumulation
-    $(1+r_1)\cdots(1+r_i)$ through period $i$ for each $i\le n$, as well as what the accumulation would have been
+    $(1+r_1)\\cdots(1+r_i)$ through period $i$ for each $i\\le n$, as well as what the accumulation would have been
     had either the arithmetic average or the geometric average been earned each period.
     """
 

@@ -21,8 +21,8 @@ text = """
         $q$ is the dividend yield, $T$ is the time to maturity of the option,
         $S$ is the price of the underlying asset, $r$ is the risk-free rate, and $K$ is the
         strike price.  Also, $N$ denotes the standard normal cumulative distribution function, 
-        $d_1 = (\log(S/K) + (r-q+0.5*\sigma^2)T)/\sqrt{\sigma^2T}$, and $d_2=d_1-\sigma\sqrt{T}$, where
-        $\sigma$ denotes the volatility of the underlying asset.  The Black-Scholes
+        $d_1 = (\\log(S/K) + (r-q+0.5*\\sigma^2)T)/\\sqrt{\\sigma^2T}$, and $d_2=d_1-\\sigma\\sqrt{T}$, where
+        $\\sigma$ denotes the volatility of the underlying asset.  The Black-Scholes
         formula for the value of a European put option is $e^{-rT}KN(-d_2) - e^{-qT}SN(-d_1)$.
         """
 

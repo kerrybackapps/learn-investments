@@ -27,7 +27,7 @@ text = """
     $n$ past investment returns are simulated, and the arithmetic and geometric average returns are calculated, 
     where $n$ is the number of years in the specified investment period.  The same 
     number of future investment returns is 
-    simulated and the compound return $(1+r_1) \cdots (1+r_n)-1$ and average return $(1/n)\sum_{i=1}^n r_i$ are
+    simulated and the compound return $(1+r_1) \\cdots (1+r_n)-1$ and average return $(1/n)\sum_{i=1}^n r_i$ are
     calculated.  This page examines whether the past arithmetic and geometric average returns are good predictors of
     the future compound and average returns.  To predict the future compound return, predictors are formed as
     $(1+ \\bar{r}_{\\text{arithmetic}})^n-1$ and $(1+ \\bar{r}_{\\text{geometric}})^n-1$, where

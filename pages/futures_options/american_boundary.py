@@ -20,7 +20,7 @@ text = """
         region.  For both a put and a call, the critical price converges to the strike price
         as the option approaches its maturity.  The red dotted line indicates the strike price.  If the underlying
         asset does not pay a dividend, then it is never optimal to exercise a call
-        option before maturity ($$S^*_t=\infty$$ for all $t$ prior to maturity), which
+        option before maturity ($$S^*_t=\\infty$$ for all $t$ prior to maturity), which
         prompts the expression: "calls are better alive than dead."
         """
 

@@ -27,8 +27,8 @@ text = """
     It is possible to enter a group of correlations that is physically 
     impossible.  Correlations $c_{12}$, $c_{13},$ and $c_{23}$ between any three 
     assets must satisfy the 
-    inequalities $c_{23} \\ge c_{12}c_{13} - \sqrt{(1-c_{12}^2)(1-c_{13}^2)}$ 
-    and $c_{23} \\le c_{12}c_{13} + \sqrt{(1-c_{12}^2)(1-c_{13}^2)}$.  Correlations
+    inequalities $c_{23} \\ge c_{12}c_{13} - \\sqrt{(1-c_{12}^2)(1-c_{13}^2)}$ 
+    and $c_{23} \\le c_{12}c_{13} + \\sqrt{(1-c_{12}^2)(1-c_{13}^2)}$.  Correlations
     that violate these inequalities are physically impossible.  If either of the inequalities holds as an 
     equality, then the assets are linearly related, meaning that one asset is perfectly correlated with a portfolio
     of the other two.  

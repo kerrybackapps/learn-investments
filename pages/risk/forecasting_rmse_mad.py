@@ -23,8 +23,8 @@ text = """
     the suitability of arithmetic or geometric average returns to form predictors of various future outcomes.  The compounded geometric average return is better suited for forecasting the future compound realized return.  The arithmetic average return is better suited for forecasting the expected per period return, that is, the average realized return.  The geometric average return is better suited for forecasting the ex post realized geometric return.
     
     This page examines predicting the future from past returns.
-    A past history of $n$ returns $r_1, \ldots, r_{n}$ is simulated from the same 
-    distribution as future returns $r_{n+1}, \ldots, r_{n+n}$, so there are the same number of returns in the past and future periods.  Consider using either the past 
+    A past history of $n$ returns $r_1, \\ldots, r_{n}$ is simulated from the same 
+    distribution as future returns $r_{n+1}, \\ldots, r_{n+n}$, so there are the same number of returns in the past and future periods.  Consider using either the past 
     arithmetic average return 
     $$\\bar{r}_{\\text{arithmetic}}= (1/n)\sum_{i=1}^{n} r_i$$ or the past
     geometric average return $\\bar{r}_{\\text{geometric}}= \prod_{i=1}^{n} (1+r_i)^{1/n}-1$ to

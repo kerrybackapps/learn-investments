@@ -20,8 +20,8 @@ text = """
     over time.  Yields, spot rates, and forward rates
     are computed with semi-annual compounding (each is twice a semi-annual rate) and for simplicity it
     is assumed that all bonds have maturities that are an integer number of half years.  Forward rates $f_i$ for each
-    six-month period are defined by the equations $(1+f_1/2)(1+f_2/2) \cdots (1+f_n/2) = (1+s_n/2)^n$, 
-    for $n=1, 2, \ldots$, where $s_n$ is
+    six-month period are defined by the equations $(1+f_1/2)(1+f_2/2) \\cdots (1+f_n/2) = (1+s_n/2)^n$, 
+    for $n=1, 2, \\ldots$, where $s_n$ is
     the spot rate for a maturity of $n/2$ years.  Forward rates are the rates that could be locked in for 
     forward loans by trading
     the hypothetical zero-coupon bonds.   There are many different ways to compute spot rates to satisfy the criteria

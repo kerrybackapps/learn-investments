@@ -28,7 +28,7 @@ text = """
     The analysis downloads as an html file with four tabs.  The file can be opened in any browser.  One of
     the tabs presents the data (returns, benchmark, and factors).  The other three tabs analyze different
     types of active returns: (i) excess return over the benchmark, (ii) excess return over the beta-adjusted
-    benchmark, namely, """ + r'$\beta r_b + (1-\beta)r_f$' + """, where $$r_b$$ denotes the benchmark return 
+    benchmark, namely, """ + r'$\\beta r_b + (1-\\beta)r_f$' + """, where $$r_b$$ denotes the benchmark return 
     and $$r_f$$ denotes
     the risk free rate, and (iii) excess return over a beta-weighted combination of the benchmark and the
     factors.  In each case, the mean active return is called an alpha, the standard deviation of the active

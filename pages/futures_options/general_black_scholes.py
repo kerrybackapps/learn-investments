@@ -23,18 +23,18 @@ text = """
     formula covers both calls and puts.  Consider an exchange option, which is an option to exchange one asset
     for another.  Suppose it is European, and let $T$ denote the years to maturity.  Let $P_1$ denote the 
     present value of the asset that will be received if the option is exercised, and let $P_2$ denote the present
-    value of the asset that will be delivered if the option is exercised.  Let $\sigma$ denote the volatility of
+    value of the asset that will be delivered if the option is exercised.  Let $\\sigma$ denote the volatility of
     the ratio of present values (either $P_1$ to $P_2$ or the reverse - the volatility of the ratio is the same
     either way), and assume it is 
     constant.  Define
-    $a = (\log (P_1/P_2) + 0.5\sigma^2T)/\sqrt{\sigma^2T}$ and 
-    $b = a - \sigma\sqrt{T}$.  The value of the option is
+    $a = (\\log (P_1/P_2) + 0.5\\sigma^2T)/\\sqrt{\\sigma^2T}$ and 
+    $b = a - \\sigma\\sqrt{T}$.  The value of the option is
     $P_1N(a) - P_2N(b)$, where $N$ denotes the standard normal distribution function.  
     
     This includes the original Black-Scholes call option formula by taking (i) $P_1 = e^{-qT}S$, which is the cost of
     enough shares to accumulate to a single share at the option maturity via reinvestment of dividends and hence is
     the present value of the asset to be received, (ii) $P_2 = e^{-rT}K$, which is the present value of the strike
-    price, and (iii) $\sigma =$ volatility of the underlying price, which in this case is the volatility 
+    price, and (iii) $\\sigma =$ volatility of the underlying price, which in this case is the volatility 
     of $P_1/P_2$.  The general formula includes
     the put formula by taking $P_1=e^{-rT}K$ and $P_2 = e^{-qT}S$.  It includes random interest rates by taking
     $P_2$ (for a call) or $P_1$ (for a put) to be the price of a zero coupon bond maturing at $T$ that ha a 

@@ -17,9 +17,9 @@ chapter_url = "futures-options"
 urls = None
 text = """ 
     A binomial tree is generated for an underlying asset based on the initial price, number of periods $$N$$, the time
-    horizon $$T$$ (years to maturity), and the volatility $$\sigma$$.  The capital gain rate $$u$$ in the up state each 
+    horizon $$T$$ (years to maturity), and the volatility $$\\sigma$$.  The capital gain rate $$u$$ in the up state each 
     period is defined as 
-    $$u = e^{\sigma \sqrt{T/N}}-1$$, and the capital gain rate $$d$$ in the down state is defined by
+    $$u = e^{\\sigma \\sqrt{T/N}}-1$$, and the capital gain rate $$d$$ in the down state is defined by
     $$(1+u)(1+d) = 1$$.  A binomial tree is also generated for an option, using the underlying asset
     parameters and the risk-free rate, dividend yield, and strike price.  Note that the ordering of values 
     on the option plot y-axis
