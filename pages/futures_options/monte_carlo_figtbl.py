@@ -7,6 +7,11 @@ from pages.formatting import smallfig, blue, red
 def figtbl(n_clicks, S, K, sigma, r, q, T):
 
     N = 10000
+    
+    # Convert percentages to decimals
+    sigma = sigma / 100
+    r = r / 100
+    q = q / 100
 
     d1 = (np.log(S / K) + (r - q + 0.5 * sigma ** 2) * T) / (sigma * np.sqrt(T))
     N1 = norm.cdf(d1)
