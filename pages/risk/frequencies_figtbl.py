@@ -7,9 +7,10 @@ Created on Sat Mar 19 12:02:49 2022
 
 import pandas as pd
 import plotly.graph_objects as go
-from pages.data.ff_daily import ff3_daily as ffd
-from pages.data.ff_monthly import ff3 as ffm
-from pages.data.ff_annual import ff3_annual as ffa
+from pages.data.ff_daily import ff3_daily
+from pages.data.ff_monthly import ff3
+from pages.data.ff_annual import ff3_annual
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from pages.formatting import largefig, smallfig
 from pandas_datareader import data as pdr
 import plotly.figure_factory as ff
@@ -17,18 +18,23 @@ import numpy as np
 from scipy.stats import norm
 import yfinance as yf
 
+# TEMPORARY: Check if French data is available
+if ff3_daily is not None and ff3 is not None and ff3_annual is not None:
+    mktd = ff3_daily["Mkt-RF"] + ff3_daily.RF
+    mktd.index.name="date"
+    mktd = mktd[mktd.index>="1927"]
 
-mktd = ffd["Mkt-RF"] + ffd.RF
-mktd.index.name="date"
-mktd = mktd[mktd.index>="1927"]
+    mktm = ff3["Mkt-RF"] + ff3.RF
+    mktm.index.name="date"
+    mktm = mktm[mktm.index>='1927']
 
-mktm = ffm["Mkt-RF"] + ffm.RF
-mktm.index.name="date"
-mktm = mktm[mktm.index>='1927']
-
-mkta = ffa["Mkt-RF"] + ffa.RF
-mkta.index.name="date"
-mkta = mkta[mkta.index>='1927']
+    mkta = ff3_annual["Mkt-RF"] + ff3_annual.RF
+    mkta.index.name="date"
+    mkta = mkta[mkta.index>='1927']
+else:
+    mktd = None
+    mktm = None
+    mkta = None
 
 DAILY = None
 MONTHLY = None
@@ -36,6 +42,8 @@ ANNUAL = None
 TICKER = None
 
 def figtbl(name, dates, radio, ticker=None):
+    if mktd is None or mktm is None or mkta is None:
+        return create_unavailable_table(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig()
 
     dates = [str(x) for x in dates]
 

@@ -13,7 +13,8 @@ import plotly.graph_objects as go
 from pandas_datareader import DataReader as pdr
 from pages.formatting import largefig, green
 from pages.factor_investing.two_way_sorts_figtbl import charsDict
-from pages.data.ff_monthly import ff5 as ff
+from pages.data.ff_monthly import ff5
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
 files = [
     '25_Portfolios_5x5',
@@ -53,13 +54,15 @@ def table(data):
     return table
 
 def figtbl(char, dates):
+    if ff5 is None:
+        return create_unavailable_message_fig(), create_unavailable_message_fig()
 
     global CHAR, RETS
 
     if char != CHAR:
         CHAR = char
         RETS = pdr(charsDict[char], "famafrench", start=1963)[0] / 100
-        RETS = RETS.subtract(ff.RF, axis="index")
+        RETS = RETS.subtract(ff5.RF, axis="index")
         if char == "Net equity issuance":
             for x in RETS.columns:
                 if x.split(" ")[1][0] == "Z" or x.split(" ")[1][0:2] == "Ne":
@@ -96,7 +99,7 @@ def figtbl(char, dates):
     for port in regr.index:
         subdf = pd.DataFrame(df[port])
         subdf.columns=['ret']
-        subdf=subdf.join(ff).dropna()
+        subdf=subdf.join(ff5).dropna()
         result = sm.OLS(subdf['ret'], sm.add_constant(subdf[factors])).fit()
         regr.loc[port, factors] = result.params[factors]
         regr.loc[port, 'alpha'] = 12 * result.params['const']

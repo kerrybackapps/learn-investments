@@ -12,29 +12,33 @@ import plotly.express as px
 import statsmodels.api as sm
 from pandas_datareader import DataReader as pdr
 from pages.data.tbond10 import dgs3mo
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 import yfinance as yf
 
-ff3 = F_F_Research_Data_Factors = pdr(
-    "F-F_Research_Data_Factors", "famafrench", start=1926
-)
-ff5 = F_F_Research_Data_5_Factors_2x3 = pdr(
-    "F-F_Research_Data_5_Factors_2x3", "famafrench", start=1964
-)
+# TEMPORARY: Check if French data is available
+try:
+    ff3_data = pdr("F-F_Research_Data_Factors", "famafrench", start=1926)
+    ff5_data = pdr("F-F_Research_Data_5_Factors_2x3", "famafrench", start=1964)
 
-# annual 3 factors from 1926
-ff3 = ff3[1]
-fprem = ff3[["Mkt-RF", "SMB", "HML"]].mean()
+    # annual 3 factors from 1926
+    ff3_annual = ff3_data[1]
+    fprem = ff3_annual[["Mkt-RF", "SMB", "HML"]].mean()
 
-# add annual 5 factors from 1964
-fprem = pd.concat((fprem, ff5[1][["RMW", "CMA"]].mean()))
-fprem = fprem.round(2)
-factors = fprem.index.to_list()
+    # add annual 5 factors from 1964
+    fprem = pd.concat((fprem, ff5_data[1][["RMW", "CMA"]].mean()))
+    fprem = fprem.round(2)
+    factors = fprem.index.to_list()
 
-# monthly 5 factors for last 60 months
-ff = ff5[0].iloc[-60:] / 100
+    # monthly 5 factors for last 60 months
+    ff = ff5_data[0].iloc[-60:] / 100
 
-rf = dgs3mo.iloc[-1].item()
-rf = round(rf, 2)
+    rf = dgs3mo.iloc[-1].item()
+    rf = round(rf, 2)
+except:
+    fprem = None
+    factors = None
+    ff = None
+    rf = None
 
 
 
@@ -54,6 +58,9 @@ def data(ticker):
 
 
 def figtbl(ticker):
+    if ff is None or fprem is None or factors is None or rf is None:
+        return create_unavailable_table()
+
     ticker = ticker.upper()
     df = data(ticker)
     result = sm.OLS(df.ret, sm.add_constant(df[factors])).fit()

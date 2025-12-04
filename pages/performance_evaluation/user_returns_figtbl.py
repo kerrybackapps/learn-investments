@@ -14,11 +14,17 @@ import datapane as dp
 from pandas_datareader import DataReader as pdr
 import statsmodels.api as sm
 from pages.data.ff_monthly import ff5, Mom, ST_Rev, LT_Rev
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from pages.formatting import smallfig
 from scipy.stats import ttest_1samp as ttest
 
-facts = pd.concat((ff5, Mom, ST_Rev, LT_Rev), axis=1).dropna()
-factors = facts.drop(columns='RF').columns.to_list()
+# TEMPORARY: Check if French data is available
+if ff5 is not None and Mom is not None and ST_Rev is not None and LT_Rev is not None:
+    facts = pd.concat((ff5, Mom, ST_Rev, LT_Rev), axis=1).dropna()
+    factors = facts.drop(columns='RF').columns.to_list()
+else:
+    facts = None
+    factors = None
 
 def boxplot(contribs):
 
@@ -55,6 +61,8 @@ def cumplot(contribs, skip=None):
 
 
 def figtbl(benchmark, contents, filename, modified):
+    if facts is None:
+        return 'attribution.html'
 
     # RETURNS DATA
 

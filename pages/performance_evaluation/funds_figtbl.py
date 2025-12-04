@@ -14,17 +14,23 @@ from pages.formatting import style_header, style_data_conditional, smallfig, gra
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 from pages.data.ff_monthly import ff5, Mom, ST_Rev, LT_Rev
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from scipy.stats import ttest_1samp as ttest
 import yfinance as yf
 
-facts = pd.concat((ff5, Mom, ST_Rev, LT_Rev), axis=1).dropna()
-factors = facts.drop(columns='RF').columns.to_list()
-
-BENCHMARK = pd.Series(dtype=float, index=facts.index)
-BENCHMARK.name = 'Not Benchmark'
-
-TICKER = pd.Series(dtype=float, index=facts.index)
-TICKER.name = 'Not Ticker'
+# TEMPORARY: Check if French data is available
+if ff5 is not None and Mom is not None and ST_Rev is not None and LT_Rev is not None:
+    facts = pd.concat((ff5, Mom, ST_Rev, LT_Rev), axis=1).dropna()
+    factors = facts.drop(columns='RF').columns.to_list()
+    BENCHMARK = pd.Series(dtype=float, index=facts.index)
+    BENCHMARK.name = 'Not Benchmark'
+    TICKER = pd.Series(dtype=float, index=facts.index)
+    TICKER.name = 'Not Ticker'
+else:
+    facts = None
+    factors = None
+    BENCHMARK = None
+    TICKER = None
 
 def getBenchmark(benchmark):
 
@@ -107,6 +113,8 @@ def cumplot(contribs, skip=None):
 
 
 def figtbl(ticker, benchmark, dates):
+    if facts is None:
+        return {'simple': html.Div(), 'beta': html.Div(), 'multi': html.Div()}
 
     content = dict(
         ticker=ticker,

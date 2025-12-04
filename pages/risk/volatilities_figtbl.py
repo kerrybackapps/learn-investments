@@ -8,25 +8,32 @@ Created on Sat Mar 19 12:02:49 2022
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from pages.data.ff_daily import ff3_daily as ffd
+from pages.data.ff_daily import ff3_daily
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from pages.formatting import largefig
 from pandas_datareader import data as pdr
 import yfinance as yf
 
-mktd = ffd["Mkt-RF"] + ffd.RF
-mktd = pd.DataFrame(mktd).reset_index()
-mktd.columns = ['date', 'ret']
-mktd['month'] = mktd.date.dt.to_period('M').astype(str)
-mktm = pd.DataFrame(mktd.groupby('month').ret.std())
-mktm.columns = ['vol']
-mktm['ret'] = mktd.groupby('month').ret.apply(lambda x: (1+x).prod()-1)
-mktm['vol_lag'] = mktm.vol.shift()
-mktm = mktm.reset_index()
+# TEMPORARY: Check if French data is available
+if ff3_daily is not None:
+    mktd = ff3_daily["Mkt-RF"] + ff3_daily.RF
+    mktd = pd.DataFrame(mktd).reset_index()
+    mktd.columns = ['date', 'ret']
+    mktd['month'] = mktd.date.dt.to_period('M').astype(str)
+    mktm = pd.DataFrame(mktd.groupby('month').ret.std())
+    mktm.columns = ['vol']
+    mktm['ret'] = mktd.groupby('month').ret.apply(lambda x: (1+x).prod()-1)
+    mktm['vol_lag'] = mktm.vol.shift()
+    mktm = mktm.reset_index()
+else:
+    mktm = None
 
 MONTHLY = None
 TICKER = None
 
 def figtbl(dates, radio, ticker=None):
+    if mktm is None:
+        return create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig()
 
     dates = [str(x) for x in dates]
 

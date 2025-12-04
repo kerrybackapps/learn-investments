@@ -11,23 +11,31 @@ import plotly.express as px
 from pages.formatting import largefig, blue
 from pandas_datareader import DataReader as pdr
 import plotly.graph_objects as go
-from pages.data.ff_annual import ff3_annual as df
+from pages.data.ff_annual import ff3_annual
+from pages.data.data_unavailable import create_unavailable_message_fig
 
-mkt = df["Mkt-RF"] + df.RF
-mkt.index.name = "Year"
-mkt.index = mkt.index.astype(str).astype(int)
-mkt = pd.DataFrame(mkt)
-mkt.columns = ["Market"]
+# TEMPORARY: Check if French data is available
+if ff3_annual is not None:
+    mkt = ff3_annual["Mkt-RF"] + ff3_annual.RF
+    mkt.index.name = "Year"
+    mkt.index = mkt.index.astype(str).astype(int)
+    mkt = pd.DataFrame(mkt)
+    mkt.columns = ["Market"]
 
-df = pdr("CPIAUCSL", "fred", start="1949-12-01")
-df = df.resample("Y").last().iloc[:-1]
-df = df.pct_change().reset_index()
-df.columns = ["Year", "Inflation"]
-df["Year"] = df.Year.map(lambda x: x.year)
+    df = pdr("CPIAUCSL", "fred", start="1949-12-01")
+    df = df.resample("Y").last().iloc[:-1]
+    df = df.pct_change().reset_index()
+    df.columns = ["Year", "Inflation"]
+    df["Year"] = df.Year.map(lambda x: x.year)
 
-df = df.merge(mkt, left_on="Year", right_index=True, how="inner")
+    df = df.merge(mkt, left_on="Year", right_index=True, how="inner")
+else:
+    df = None
 
 def figtbl(dates):
+    if df is None:
+        fig = create_unavailable_message_fig()
+        return fig, fig, "N/A", "N/A", "N/A"
     dates = [int(x) for x in dates]
     d = df[(df.Year >= dates[0]) & (df.Year <= dates[1])].copy()
     avg_infl = d.Inflation.mean()

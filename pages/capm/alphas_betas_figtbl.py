@@ -9,15 +9,20 @@ import pandas as pd
 import plotly.express as px
 import statsmodels.api as sm
 from pages.formatting import largefig
-from pages.data.ff_monthly import ff3 as ff
+from pages.data.ff_monthly import ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 import yfinance as yf
 
-
-
-# monthly data for last 60 months
-ff = ff.iloc[-60:]
+# TEMPORARY: Check if French data is available
+if ff3 is not None:
+    # monthly data for last 60 months
+    ff = ff3.iloc[-60:]
+else:
+    ff = None
 
 def figtbl(ticker):
+    if ff is None:
+        return create_unavailable_message_fig(), create_unavailable_table()
 
     ticker = ticker.upper()
     ret = yf.download(ticker, start="2017-01-01")

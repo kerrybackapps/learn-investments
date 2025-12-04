@@ -11,11 +11,17 @@ import statsmodels.api as sm
 import plotly.express as px
 import plotly.graph_objects as go
 from pages.formatting import largefig, green
-from pages.data.ff_monthly import ff48 as df, ff3 as ff
+from pages.data.ff_monthly import ff48, ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
 
-d = dict(
-    Agric="Agriculture",
+# TEMPORARY: Check if French data is available
+if ff48 is not None and ff3 is not None:
+    df = ff48
+    ff = ff3
+
+    d = dict(
+        Agric="Agriculture",
     Food="Food Products",
     Soda="Candy & Soda",
     Beer="Beer & Liquor",
@@ -63,16 +69,21 @@ d = dict(
     RlEst="Real Estate",
     Fin="Trading",
     Other="Almost Nothing",
-)
+    )
 
-df.columns = [x.strip() for x in df.columns]
-df = df.rename(columns=d)
-inds = df.columns.to_list()
-df = df.join(ff, how="inner")
-df[inds] = df[inds].subtract(df.RF, axis="index")
+    df.columns = [x.strip() for x in df.columns]
+    df = df.rename(columns=d)
+    inds = df.columns.to_list()
+    df = df.join(ff, how="inner")
+    df[inds] = df[inds].subtract(df.RF, axis="index")
+else:
+    df = None
+    inds = None
 
 
 def figtbl(dates):
+    if df is None or inds is None:
+        return create_unavailable_message_fig()
     start = str(dates[0]) + "-01"
     stop = str(dates[1]) + "-12"
     d1 = df.loc[start:stop]

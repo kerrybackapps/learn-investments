@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from pages.formatting import largefig, green, style_data_conditional, style_header, gray200
-from pages.data.ff_monthly import ff3 as ff
+from pages.data.ff_monthly import ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from dash.dash_table import DataTable
 import dash_bootstrap_components as dbc
 from dash import dcc, html
@@ -46,13 +47,15 @@ def Sharpe(df):
     return 100 * np.sqrt(12) * df.mean() / df.std()
 
 def figtbl(name, char, dates):
+    if ff3 is None:
+        return {'alphas': html.Div()}
     content = dict(char=char, dates=dates)
     global CHAR, RETS
 
     if char != CHAR:
         CHAR = char
         RETS = pdr(charsDict[char], "famafrench", start=1926)[0] / 100
-        RETS = RETS.subtract(ff.RF, axis="index")
+        RETS = RETS.subtract(ff3.RF, axis="index")
         if char == "Net equity issuance":
             for x in RETS.columns:
                 if x.split(" ")[1][0] == "Z" or x.split(" ")[1][0:2] == "Ne":
@@ -87,7 +90,7 @@ def figtbl(name, char, dates):
 
     # multi-indexed index, for unstacking
     regr = pd.DataFrame(dtype=float, index=df.columns, columns=['alpha', 'beta', 'tstat', 'pval', 'empirical', 'theoretical'])
-    df['Mkt-RF'] = ff['Mkt-RF']
+    df['Mkt-RF'] = ff3['Mkt-RF']
 
     for port in regr.index:
         result = sm.OLS(df[port], sm.add_constant(df['Mkt-RF'])).fit()

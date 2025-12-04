@@ -10,24 +10,32 @@ import plotly.express as px
 import statsmodels.api as sm
 from pages.formatting import largefig
 from pages.data.ff_annual import ff3_annual
-from pages.data.ff_monthly import ff3 as ff
+from pages.data.ff_monthly import ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 from pages.data.tbond10 import dgs3mo
 from pandas_datareader import data as pdr
 import yfinance as yf
 
-# annual data from 1926
-mprem = 100 * ff3_annual["Mkt-RF"].mean()
-mprem = round(mprem, 2)
+# TEMPORARY: Check if French data is available
+if ff3_annual is not None and ff3 is not None:
+    # annual data from 1926
+    mprem = 100 * ff3_annual["Mkt-RF"].mean()
+    mprem = round(mprem, 2)
 
-# 3-month rate
+    # 3-month rate
+    rf = dgs3mo.iloc[-1].item()
+    rf = round(rf, 2)
 
-rf = dgs3mo.iloc[-1].item()
-rf = round(rf, 2)
-
-# monthly data for last 60 months
-ff = ff.iloc[-60:]
+    # monthly data for last 60 months
+    ff = ff3.iloc[-60:]
+else:
+    mprem = None
+    rf = None
+    ff = None
 
 def figtbl(ticker):
+    if ff is None or mprem is None or rf is None:
+        return create_unavailable_message_fig(), create_unavailable_table()
 
     ticker = ticker.upper()
     ret = yf.download(ticker, start="2017-01-01")

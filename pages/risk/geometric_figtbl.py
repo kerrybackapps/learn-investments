@@ -9,18 +9,25 @@ import pandas as pd
 import plotly.graph_objects as go
 from pages.formatting import largefig
 import numpy as np
-from pages.data.ff_annual import ff3_annual as df
+from pages.data.ff_annual import ff3_annual
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 import yfinance as yf
 
-mkt = df["Mkt-RF"] + df.RF
-mkt.index = mkt.index.astype(str).astype(int)
-mkt.name = "mkt"
-mkt.index.name = "date"
+# TEMPORARY: Check if French data is available
+if ff3_annual is not None:
+    mkt = ff3_annual["Mkt-RF"] + ff3_annual.RF
+    mkt.index = mkt.index.astype(str).astype(int)
+    mkt.name = "mkt"
+    mkt.index.name = "date"
+else:
+    mkt = None
 
 ANNUAL = None
 TICKER = None
 
 def figtbl(dates, radio, ticker=None):
+    if mkt is None:
+        return create_unavailable_message_fig(), create_unavailable_message_fig(), "N/A", "N/A", "N/A"
 
     dates = [int(x) for x in dates]
 

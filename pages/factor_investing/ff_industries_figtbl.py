@@ -12,10 +12,16 @@ import plotly.express as px
 import plotly.graph_objects as go
 from pandas_datareader import DataReader as pdr
 from pages.formatting import largefig, green
-from pages.data.ff_monthly import ff5 as ff, ff48 as df
+from pages.data.ff_monthly import ff5, ff48
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
-d = dict(
-    Agric="Agriculture",
+# TEMPORARY: Check if French data is available
+if ff5 is not None and ff48 is not None:
+    ff = ff5
+    df = ff48
+
+    d = dict(
+        Agric="Agriculture",
     Food="Food Products",
     Soda="Candy & Soda",
     Beer="Beer & Liquor",
@@ -63,20 +69,24 @@ d = dict(
     RlEst="Real Estate",
     Fin="Trading",
     Other="Almost Nothing",
-)
+    )
 
+    df.columns = [x.strip() for x in df.columns]
+    df = df.rename(columns=d)
+    inds = df.columns.to_list()
+    df = df.join(ff, how="inner")
+    df[inds] = df[inds].subtract(df.RF, axis="index")
 
-
-df.columns = [x.strip() for x in df.columns]
-df = df.rename(columns=d)
-inds = df.columns.to_list()
-df = df.join(ff, how="inner")
-df[inds] = df[inds].subtract(df.RF, axis="index")
-
-factors = ["Mkt-RF", "SMB", "HML", "RMW", "CMA"]
+    factors = ["Mkt-RF", "SMB", "HML", "RMW", "CMA"]
+else:
+    df = None
+    inds = None
+    factors = None
 
 
 def figtbl(dates):
+    if df is None or inds is None or factors is None:
+        return create_unavailable_message_fig()
     start = str(dates[0]) + "-01"
     stop = str(dates[1]) + "-12"
     d1 = df.loc[start:stop]

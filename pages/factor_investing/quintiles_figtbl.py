@@ -10,6 +10,7 @@ import pandas as pd
 import plotly.express as px
 from pandas_datareader import DataReader as pdr
 from pages.formatting import smallfig
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
 
 files = {
@@ -40,11 +41,15 @@ def figtbl(key, dates):
 
     global CHAR, DATA
 
+    # TEMPORARY: Check if French data is available
     if key != CHAR:
         f = files[key]
 
         # annual value-weighted returns
-        d = pdr(f, "famafrench", start=1926)[2] / 100
+        try:
+            d = pdr(f, "famafrench", start=1926)[2] / 100
+        except:
+            return create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_table()
 
         # combine deciles for momentum, short-term reversal, and long-term reversal
         if "Portfolios_Formed_on" not in f:

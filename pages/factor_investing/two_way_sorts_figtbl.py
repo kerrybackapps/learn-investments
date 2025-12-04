@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 from pages.formatting import largefig, blue, red
-from pages.data.ff_monthly import ff3 as ff
+from pages.data.ff_monthly import ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 import dash_bootstrap_components as dbc
 from dash import dcc, html
 import copy
@@ -41,6 +42,8 @@ RETS = None
 CHAR = None
 
 def figtbl(char, dates):
+    if ff3 is None:
+        return {'means': html.Div(), 'alpha': None}
     content = dict(char=char, dates=dates)
     global CHAR, RETS
     if char != CHAR:
@@ -135,7 +138,7 @@ def figtbl(char, dates):
 
     # means tab
     df.columns = pd.MultiIndex.from_tuples(splits)
-    df = df.subtract(ff.RF, axis="index")
+    df = df.subtract(ff3.RF, axis="index")
 
     means = 12 * df.mean().unstack()
     sharpes = np.sqrt(12) * df.mean() / df.std()

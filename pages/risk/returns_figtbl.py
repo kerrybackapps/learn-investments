@@ -10,14 +10,22 @@ import plotly.express as px
 import plotly.graph_objects as go
 import yfinance as yf
 from pages.formatting import smallfig
-from pages.data.ff_annual import ff3_annual as df
+from pages.data.ff_annual import ff3_annual
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
-mkt = (df["Mkt-RF"] + df.RF).squeeze()
-mkt.index.name = "Year"
-mkt.index = mkt.index.astype(str)
+# TEMPORARY: Check if French data is available
+if ff3_annual is not None:
+    mkt = (ff3_annual["Mkt-RF"] + ff3_annual.RF).squeeze()
+    mkt.index.name = "Year"
+    mkt.index = mkt.index.astype(str)
+else:
+    mkt = None
 
 
 def figtbl(dates, radio="Market", ticker=None):
+    if mkt is None:
+        return create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_message_fig(), create_unavailable_table()
+
     dates = [str(x) + "-01-01" for x in dates]
     if radio == "Ticker":
         ticker = ticker.upper()
