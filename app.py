@@ -149,8 +149,19 @@ div1 = html.Div(
     },
 )
 
+warning_banner = dbc.Alert(
+    [
+        html.I(className="bi bi-exclamation-triangle-fill me-2"),
+        "The app is currently unable to access Ken French's Data Library, so some pages are down. This should be fixed soon."
+    ],
+    color="warning",
+    className="d-flex align-items-center"
+)
+
 us = dbc.Col(
     [
+        warning_banner,
+        html.Br(),
         html.H5(
             dcc.Markdown(
                 """
@@ -158,21 +169,21 @@ us = dbc.Col(
                 options and futures, fixed income, portfolio management, and introductory finance.  Created at
                 the [Jones Graduate School
                 of Business](https://business.rice.edu/) at [Rice University](https://www.rice.edu/).
-                
+
                 This website contains over 80 pages in 8 different sections.  Each section includes an
                 overview that describes the pages in that section.  The pages present
                 interactive tables and figures to illustrate investment concepts.  Many pages pull data
                 from online sources, and all pages allow user control of inputs - for example, entering stock tickers
                 or option parameters.  Hovering the cursor over
-                the plots will bring up information about the data plotted.  
-                
-                We also provide the python code that generates the figures and tables.  Each page 
-                contains a link to a Jupyter notebook that opens on [Google Colab](https://colab.google/) and 
-                can be run there without installing any software.  This is an extra feature.  The 
+                the plots will bring up information about the data plotted.
+
+                We also provide the python code that generates the figures and tables.  Each page
+                contains a link to a Jupyter notebook that opens on [Google Colab](https://colab.google/) and
+                can be run there without installing any software.  This is an extra feature.  The
                 interactive web elements are "point and click" and do not require any
                 knowledge of python.
-                
-                We 
+
+                We
                 welcome all users, and we welcome [comments and suggestions](mailto:kerryback@gmail.com).
                 """
             )
