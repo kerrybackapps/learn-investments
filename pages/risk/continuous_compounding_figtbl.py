@@ -11,18 +11,26 @@ import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import yfinance as yf
 from pages.formatting import smallfig
-from pages.data.ff_annual import ff3_annual as df
+from pages.data.ff_annual import ff3_annual
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
-mkt = df["Mkt-RF"] + df.RF
-mkt.index = mkt.index.astype(str)
-mkt.index.name = "date"
-mkt.name = "ret"
+# TEMPORARY: Check if French data is available
+if ff3_annual is not None:
+    mkt = ff3_annual["Mkt-RF"] + ff3_annual.RF
+    mkt.index = mkt.index.astype(str)
+    mkt.index.name = "date"
+    mkt.name = "ret"
+else:
+    mkt = None
 
 
 ANNUAL = None
 TICKER = None
 
 def figtbl(name, dates, radio, ticker=None):
+    if mkt is None and radio != "Ticker":
+        fig = create_unavailable_message_fig()
+        return fig, fig, create_unavailable_table()
 
     dates = [str(x) for x in dates]
 

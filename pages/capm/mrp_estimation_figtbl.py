@@ -4,15 +4,25 @@ import numpy as np
 import plotly.graph_objects as go
 from pandas_datareader import DataReader as pdr
 from pages.formatting import smallfig, blue, red, green
-from pages.data.ff_monthly import ff3 as ff
+from pages.data.ff_monthly import ff3
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
 T = 100          #number of years of monthly data
 
-ff = pdr('F-F_Research_Data_Factors', 'famafrench', start=1900)[0] / 100
-mkt = ff["Mkt-RF"]
-mkt.index = mkt.index.to_timestamp()
+# TEMPORARY: Check if French data is available
+try:
+    ff = pdr('F-F_Research_Data_Factors', 'famafrench', start=1900)[0] / 100
+    mkt = ff["Mkt-RF"]
+    mkt.index = mkt.index.to_timestamp()
+except Exception as e:
+    print(f"Warning: Unable to access Ken French Data Library: {e}")
+    ff = None
+    mkt = None
 
 def figtbl(mn, sd, numyears):
+    if mkt is None:
+        fig = create_unavailable_message_fig()
+        return fig, fig
     '''
     mn = annual market risk premium 
     sd = annual standard deviation of excess market returns
