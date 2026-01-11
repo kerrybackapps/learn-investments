@@ -149,19 +149,8 @@ div1 = html.Div(
     },
 )
 
-warning_banner = dbc.Alert(
-    [
-        html.I(className="bi bi-exclamation-triangle-fill me-2"),
-        "The app is currently unable to access Ken French's Data Library, so some pages are down. This should be fixed soon."
-    ],
-    color="warning",
-    className="d-flex align-items-center"
-)
-
 us = dbc.Col(
     [
-        warning_banner,
-        html.Br(),
         html.H5(
             dcc.Markdown(
                 """
