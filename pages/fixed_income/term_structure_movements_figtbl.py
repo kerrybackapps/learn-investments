@@ -1,7 +1,11 @@
 from pages.data.yield_changes import yield_changes
+from pages.data.data_unavailable import create_unavailable_table
 
 
 def figtbl(dates):
+    if yield_changes is None:
+        empty = create_unavailable_table()
+        return empty, empty
     start = str(dates[0]) + "-01"
     stop = str(dates[1]) + "-12"
     df = yield_changes.loc[start:stop]

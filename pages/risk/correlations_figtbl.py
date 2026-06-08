@@ -2,15 +2,22 @@ import pandas as pd
 from pages.data.inflation import inflation
 from pages.data.sbb import nominal
 from pages.formatting import smallfig
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 import plotly.express as px
 
-
-df = pd.concat((nominal, inflation), axis=1).dropna()
 assets = ['S&P 500', 'Gold', 'Corporates', 'Treasuries', 'TBills']
-df = df[assets + ['Inflation']]
+if inflation is not None:
+    df = pd.concat((nominal, inflation), axis=1).dropna()
+    df = df[assets + ['Inflation']]
+else:
+    df = None
 
 
 def figtbl(name, dates):
+    if df is None:
+        fig = create_unavailable_message_fig()
+        return [fig] * 5 + [[]]
+
 
     d1 = df.loc[dates[0]:dates[1]].copy()
     corrs = d1.corr().iloc[-1][:-1]

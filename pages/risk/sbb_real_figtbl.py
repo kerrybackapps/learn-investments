@@ -10,16 +10,24 @@ import plotly.express as px
 from pages.formatting import largefig
 from pages.data.sbb import nominal
 from pages.data.inflation import inflation
+from pages.data.data_unavailable import create_unavailable_message_fig, create_unavailable_table
 
-df = pd.concat((nominal, inflation), axis=1).dropna()
 assets = ['S&P 500', 'Gold', 'Corporates', 'Treasuries', 'TBills']
-df = df[assets + ['Inflation']]
-for asset in assets:
-    df[asset] = (1+df[asset]) / (1+df.Inflation) - 1
-df = df[assets]
+if inflation is not None:
+    df = pd.concat((nominal, inflation), axis=1).dropna()
+    df = df[assets + ['Inflation']]
+    for asset in assets:
+        df[asset] = (1+df[asset]) / (1+df.Inflation) - 1
+    df = df[assets]
+else:
+    df = None
 
 
 def figtbl(name, dates):
+    if df is None:
+        fig = create_unavailable_message_fig()
+        return fig, fig, fig, []
+
 
     rets = df.loc[dates[0]:dates[1]]
 

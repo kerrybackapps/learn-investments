@@ -17,7 +17,7 @@ from pandas_datareader import data as pdr
 import yfinance as yf
 
 # TEMPORARY: Check if French data is available
-if ff3_annual is not None and ff3 is not None:
+if ff3_annual is not None and ff3 is not None and dgs3mo is not None:
     # annual data from 1926
     mprem = 100 * ff3_annual["Mkt-RF"].mean()
     mprem = round(mprem, 2)
